@@ -33,7 +33,7 @@ const BInput = ({
         inputEl?.focus();
       }, 0);
     }
-  }, [autofocus, id]);
+  }, [autofocus]);
 
   const handleValidation = (event) => {
     const validationResult = validate(
@@ -57,9 +57,9 @@ const BInput = ({
   ].join(' ');
 
   const inputClasses = [
-    'grow bg-transparent outline-none',
+    'grow !bg-transparent !text-transparent outline-none',
     'text-sm sm:text-base',
-    'placeholder:text-grey-500 placeholder:text-right',
+    'placeholder:text-grey-500 placeholder:text-start',
     'w-full h-[46px] sm:h-[57px]',
     inputClass,
   ].join(' ');
