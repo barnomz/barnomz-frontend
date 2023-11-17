@@ -1,15 +1,26 @@
-import NextAuth from "next-auth"
-// import GoogleProvider from "next-auth/providers/google"
+import NextAuth from 'next-auth'
+import CredentialsProvider from 'next-auth/providers/credentials'
+import api from '@/services/api'
 
-export const authOptions = {
-  // TODO: Add google provider
-
-  // providers: [
-  //   GoogleProvider({
-  //     clientId: process.env.GOOGLE_CLIENT_ID,
-  //     clientSecret: process.env.GOOGLE_CLIENT_SECRET
-  //   }),
-  // ],
-}
-
-export default NextAuth(authOptions)
+export default NextAuth({
+  providers: [
+    CredentialsProvider({
+      credentials: {
+        username: { label: 'Username', type: 'text' },
+        password: { label: 'Password', type: 'password' }
+      },
+      async authorize(credentials) {
+        await api.auth.login({ data: credentials }).then((response) => {
+          return Promise.resolve(response.data)
+        }).catch((error) => {
+          console.error(error)
+          return Promise.resolve(null)
+        })
+      }
+    })
+  ],
+  pages: {
+    signIn: '/auth/login',
+    signOut: '/auth/logout'
+  }
+})
