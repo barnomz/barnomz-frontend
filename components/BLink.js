@@ -14,8 +14,8 @@ const BLink = ({
                  iconSize = 20,
                  postIcon,
                  color = 'primary',
-                 children,
-                 onClick
+                 onClick,
+                 children
                }) => {
 
   const classes = [
@@ -42,14 +42,14 @@ const BLink = ({
 
   return (
     <Link href={to} target={target} passHref className={classes} onClick={onClick}>
-      {(preIcon && !loading) ? renderIcon(preIcon, iconSize, iconClass) : ''}
+      {(preIcon && !loading) && renderIcon(preIcon, iconSize, iconClass)}
 
       {icon || loading
         ? renderIcon(loading ? faSpinner : icon, iconSize, iconClass)
         : children
       }
 
-      {(postIcon && !loading) ? renderIcon(postIcon, iconSize, iconClass) : ''}
+      {(postIcon && !loading) && renderIcon(postIcon, iconSize, iconClass)}
     </Link>
   );
 };

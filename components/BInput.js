@@ -1,9 +1,12 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, useEffect } from 'react';
-import { validate } from '@/utils/validations';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {useEffect, useState} from 'react';
+import {validate} from '@/utils/validations';
 
 const BInput = ({
                   label,
+                  labelSlot,
+                  labelAsideSlot,
+                  appendSlot,
                   placeholder,
                   required = false,
                   icon,
@@ -84,7 +87,6 @@ const BInput = ({
           <div className="flex items-center justify-center">
             <FontAwesomeIcon
               icon={icon}
-              size={24}
               className={disabled ? 'text-grey-300' : 'text-grey-500'}
             />
           </div>
@@ -103,6 +105,13 @@ const BInput = ({
           onInput={handleValidation}
           onChange={handleValidation}
         />
+
+        {appendSlot &&
+          (<div
+            className="tw-flex tw-items-center tw-justify-center"
+          >
+            {appendSlot}
+          </div>)}
       </div>
 
       <div className="text-error text-xs min-h-[24px]">
