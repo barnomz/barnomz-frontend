@@ -1,4 +1,4 @@
-import { colors } from './palette.js'
+import { colors } from './constants/palette.js'
 
 module.exports = {
   content: [
