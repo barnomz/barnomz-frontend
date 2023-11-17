@@ -1,6 +1,6 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSpinner} from '@fortawesome/free-solid-svg-icons';
-import BLink from './BLink';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import BLink from './BLink'
 
 const BBtn = ({
                 to,
@@ -15,7 +15,7 @@ const BBtn = ({
                 postIcon,
                 color = 'primary',
                 onClick,
-                children,
+                children
               }) => {
   const classes = [
     'flex justify-center items-center gap-x-2',
@@ -26,18 +26,18 @@ const BBtn = ({
     disabled
       ? 'bg-grey-50 text-grey-200 cursor-default pointer-events-none'
       : getColorClasses(color),
-    block && 'w-full',
-  ].join(' ');
+    block && 'w-full'
+  ].join(' ')
 
   const renderIcon = (iconName, size, additionalClass) => {
     if (loading) {
-      return <FontAwesomeIcon icon={faSpinner} spin size={size} className={additionalClass}/>;
+      return <FontAwesomeIcon icon={faSpinner} spin size={size} className={additionalClass} />
     }
     if (iconName) {
-      return <FontAwesomeIcon icon={iconName} size={size} className={additionalClass}/>;
+      return <FontAwesomeIcon icon={iconName} size={size} className={additionalClass} />
     }
-    return null;
-  };
+    return null
+  }
 
   if (to) {
     return (
@@ -52,18 +52,18 @@ const BBtn = ({
         iconClass={iconClass}
         iconSize={iconSize}
         postIcon={postIcon}
-        color="transparent"
+        color='transparent'
         className={classes}
         onClick={onClick}
       >
         {children}
       </BLink>
-    );
+    )
   }
 
   return (
     <button
-      type="button"
+      type='button'
       className={classes}
       disabled={disabled}
       onClick={onClick}
@@ -77,30 +77,30 @@ const BBtn = ({
 
       {(postIcon && !loading) && renderIcon(postIcon, iconSize, iconClass)}
     </button>
-  );
-};
+  )
+}
 
 const getColorClasses = (color) => {
   switch (color) {
     case 'primary-text':
-      return 'text-primary-700 hover:border-primary-700';
+      return 'text-primary-700 hover:border-primary-700'
     case 'primary':
-      return 'bg-primary text-grey-800 hover:bg-primary-600 active:bg-primary-700';
+      return 'bg-primary text-grey-800 hover:bg-primary-600 active:bg-primary-700'
     case 'secondary-text':
-      return 'text-secondary-500 hover:border-secondary-500';
+      return 'text-secondary-500 hover:border-secondary-500'
     case 'secondary':
-      return 'bg-secondary text-white hover:bg-secondary-600 active:bg-secondary-700';
+      return 'bg-secondary text-white hover:bg-secondary-600 active:bg-secondary-700'
     case 'success':
-      return 'bg-success-600 text-white hover:bg-success-700 active:bg-success-800';
+      return 'bg-success-600 text-white hover:bg-success-700 active:bg-success-800'
     case 'error':
-      return 'bg-error-600 text-white hover:bg-error-700 active:bg-error-800';
+      return 'bg-error-600 text-white hover:bg-error-700 active:bg-error-800'
     case 'grey-text':
-      return 'text-grey-400 hover:border-grey-400';
+      return 'text-grey-400 hover:border-grey-400'
     case 'grey':
-      return 'bg-grey-50 text-grey-800 hover:bg-grey-200 active:bg-grey-300';
+      return 'bg-grey-50 text-grey-800 hover:bg-grey-200 active:bg-grey-300'
     default:
-      return '';
+      return ''
   }
-};
+}
 
-export default BBtn;
+export default BBtn

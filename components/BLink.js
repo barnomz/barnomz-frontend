@@ -1,6 +1,6 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSpinner} from '@fortawesome/free-solid-svg-icons';
-import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 
 const BLink = ({
                  to,
@@ -25,18 +25,18 @@ const BLink = ({
       ? 'text-grey-200 cursor-default pointer-events-none'
       : getColorClasses(color),
     block && 'w-full',
-    color !== 'transparent' && 'hover:underline',
-  ].join(' ');
+    color !== 'transparent' && 'hover:underline'
+  ].join(' ')
 
   const renderIcon = (iconName, size, additionalClass) => {
     if (loading) {
-      return <FontAwesomeIcon icon={faSpinner} spin size={size} className={additionalClass}/>;
+      return <FontAwesomeIcon icon={faSpinner} spin size={size} className={additionalClass} />
     }
     if (iconName) {
-      return <FontAwesomeIcon icon={iconName} size={size} className={additionalClass}/>;
+      return <FontAwesomeIcon icon={iconName} size={size} className={additionalClass} />
     }
-    return null;
-  };
+    return null
+  }
 
   return (
     <Link href={to} target={target} passHref className={classes} onClick={onClick}>
@@ -49,22 +49,22 @@ const BLink = ({
 
       {(postIcon && !loading) && renderIcon(postIcon, iconSize, iconClass)}
     </Link>
-  );
-};
+  )
+}
 
 const getColorClasses = (color) => {
   switch (color) {
     case 'primary':
-      return 'text-primary-700';
+      return 'text-primary-700'
     case 'secondary':
-      return 'text-secondary-500';
+      return 'text-secondary-500'
     case 'grey':
-      return 'text-grey-600';
+      return 'text-grey-600'
     case 'transparent':
-      return '';
+      return ''
     default:
-      return '';
+      return ''
   }
-};
+}
 
-export default BLink;
+export default BLink

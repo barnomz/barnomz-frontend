@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import Layout from '@/components/layout'
-import {SessionProvider} from "next-auth/react"
+import { SessionProvider } from 'next-auth/react'
 
 // export const metadata = {
 //   title: "صرافی ارز دیجیتال تبدیل | بهترین صرافی آنلاین ایرانی",
@@ -11,7 +11,7 @@ import {SessionProvider} from "next-auth/react"
 //   },
 // };
 
-export default function App({Component, pageProps: {session, ...pageProps}}) {
+export default function App({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
       <Layout>

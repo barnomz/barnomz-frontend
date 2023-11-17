@@ -9,21 +9,23 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Regular.woff2') format('woff'),local(arial), url('/fonts/Vazirmatn/woff2/Vazirmatn-Regular.ttf') format('truetype'),local(arial);
+  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Regular.woff2') format('woff'), local(arial), url('/fonts/Vazirmatn/woff2/Vazirmatn-Regular.ttf') format('truetype'), local(arial);
 }
+
 @font-face {
   font-family: Vazirmatn;
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Medium.woff2') format('woff'),local(arial), url('/fonts/Vazirmatn/woff2/Vazirmatn-Medium.ttf') format('truetype'),local(arial);
+  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Medium.woff2') format('woff'), local(arial), url('/fonts/Vazirmatn/woff2/Vazirmatn-Medium.ttf') format('truetype'), local(arial);
 }
+
 @font-face {
   font-family: Vazirmatn;
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Bold.woff2') format('woff'),local(arial), url('/fonts/Vazirmatn/woff2/Vazirmatn-Bold.ttf') format('truetype'),local(arial);
+  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Bold.woff2') format('woff'), local(arial), url('/fonts/Vazirmatn/woff2/Vazirmatn-Bold.ttf') format('truetype'), local(arial);
 }
 
 @layer base {

@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import BInput from './BInput';
-import BBtn from './BBtn';
+import { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import BInput from './BInput'
+import BBtn from './BBtn'
 
 const BInputPassword = ({
                           label,
@@ -23,22 +23,22 @@ const BInputPassword = ({
                           value,
                           onChange
                         }) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
   const toggleShow = () => {
-    setShow(!show);
-  };
+    setShow(!show)
+  }
 
-  const type = show ? 'text' : 'password';
+  const type = show ? 'text' : 'password'
 
   const appendSlot = (
     <BBtn
       icon={show ? faEye : faEyeSlash}
       iconSize={'sm'}
-      color="grey-text"
+      color='grey-text'
       onClick={toggleShow}
     >
-      <FontAwesomeIcon icon={show ? faEye : faEyeSlash} size="lg" />
+      <FontAwesomeIcon icon={show ? faEye : faEyeSlash} size='lg' />
     </BBtn>
   )
 
@@ -64,7 +64,7 @@ const BInputPassword = ({
       autocomplete={autocomplete}
       validations={validations}
     />
-  );
-};
+  )
+}
 
-export default BInputPassword;
+export default BInputPassword

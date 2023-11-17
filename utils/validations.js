@@ -21,7 +21,7 @@ export function validate(validations, value, inputId) {
   if (inputEl) {
     inputEl.dispatchEvent(
       new CustomEvent('validate', {
-        detail: { key: inputId, value: status },
+        detail: { key: inputId, value: status }
       })
     )
   }
