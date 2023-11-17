@@ -11,7 +11,7 @@ const BBtn = ({
                 preIcon,
                 icon,
                 iconClass,
-                iconSize = 20,
+                iconSize = 'md',
                 postIcon,
                 color = 'primary',
                 onClick,
@@ -26,9 +26,7 @@ const BBtn = ({
     disabled
       ? 'bg-grey-50 text-grey-200 cursor-default pointer-events-none'
       : getColorClasses(color),
-    {
-      'w-full': block,
-    },
+    block && 'w-full',
   ].join(' ');
 
   const renderIcon = (iconName, size, additionalClass) => {

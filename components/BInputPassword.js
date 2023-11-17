@@ -34,7 +34,7 @@ const BInputPassword = ({
   const appendSlot = (
     <BBtn
       icon={show ? faEye : faEyeSlash}
-      iconSize={24}
+      iconSize={'sm'}
       color="grey-text"
       onClick={toggleShow}
     >

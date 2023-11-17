@@ -11,7 +11,7 @@ const BLink = ({
                  preIcon,
                  icon,
                  iconClass,
-                 iconSize = 20,
+                 iconSize = 'sm',
                  postIcon,
                  color = 'primary',
                  onClick,
@@ -24,10 +24,8 @@ const BLink = ({
     disabled
       ? 'text-grey-200 cursor-default pointer-events-none'
       : getColorClasses(color),
-    {
-      'w-full': block,
-      'hover:underline': color !== 'transparent',
-    },
+    block && 'w-full',
+    color !== 'transparent' && 'hover:underline',
   ].join(' ');
 
   const renderIcon = (iconName, size, additionalClass) => {
