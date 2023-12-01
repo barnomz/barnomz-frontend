@@ -13,8 +13,8 @@ export default function Login() {
   const [credentials, setCredentials] = useState({ username: '', password: '' })
   const router = useRouter()
 
-  const handleLogin = async (event) => {
-    event.preventDefault()
+  const handleLogin = async (isFormValid) => {
+    if (!isFormValid) return
 
     const result = await signIn('credentials', {
       redirect: false,
@@ -25,7 +25,6 @@ export default function Login() {
     if (result.ok && result.url) {
       await router.replace(result.url)
     }
-    // You can check for error handling with `result.error`
   }
 
   const updateField = (field) => (event) => {
