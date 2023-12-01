@@ -13,9 +13,10 @@ const BBtn = ({
                 iconClass,
                 iconSize = 'md',
                 postIcon,
-                color = 'primary',
+                color = 'secondary',
                 onClick,
-                children
+                children,
+                ...props
               }) => {
   const classes = [
     'flex justify-center items-center gap-x-2',
@@ -28,6 +29,8 @@ const BBtn = ({
       : getColorClasses(color),
     block && 'w-full'
   ].join(' ')
+
+  props.className = props.className + ' ' + classes
 
   const renderIcon = (iconName, size, additionalClass) => {
     if (loading) {
@@ -53,8 +56,8 @@ const BBtn = ({
         iconSize={iconSize}
         postIcon={postIcon}
         color='transparent'
-        className={classes}
         onClick={onClick}
+        {...props}
       >
         {children}
       </BLink>
@@ -63,10 +66,9 @@ const BBtn = ({
 
   return (
     <button
-      type='button'
-      className={classes}
       disabled={disabled}
       onClick={onClick}
+      {...props}
     >
       {(preIcon && !loading) && renderIcon(preIcon, iconSize, iconClass)}
 
@@ -83,19 +85,19 @@ const BBtn = ({
 const getColorClasses = (color) => {
   switch (color) {
     case 'primary-text':
-      return 'text-primary-700 hover:border-primary-700'
+      return 'text-primary-dark hover:border-primary-dark'
     case 'primary':
-      return 'bg-primary text-grey-800 hover:bg-primary-600 active:bg-primary-700'
+      return 'bg-primary text-grey-50 hover:bg-primary'
     case 'secondary-text':
-      return 'text-secondary-500 hover:border-secondary-500'
+      return 'text-secondary-dark hover:border-secondary-dark'
     case 'secondary':
-      return 'bg-secondary text-white hover:bg-secondary-600 active:bg-secondary-700'
+      return 'bg-secondary-dark text-white hover:bg-secondary'
     case 'success':
       return 'bg-success-600 text-white hover:bg-success-700 active:bg-success-800'
     case 'error':
       return 'bg-error-600 text-white hover:bg-error-700 active:bg-error-800'
     case 'grey-text':
-      return 'text-grey-400 hover:border-grey-400'
+      return 'text-grey-50 hover:border-grey-100'
     case 'grey':
       return 'bg-grey-50 text-grey-800 hover:bg-grey-200 active:bg-grey-300'
     default:

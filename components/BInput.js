@@ -20,7 +20,8 @@ const BInput = ({
                   autocomplete,
                   validations = [],
                   value,
-                  onChange
+                  onChange,
+                  ...props
                 }) => {
   const [id, setId] = useState(null)
   const [error, setError] = useState(null)
@@ -48,9 +49,8 @@ const BInput = ({
   }
 
   const wrapperClasses = [
-    'px-3 flex items-center gap-x-2 rounded',
-    'bg-grey-50 border border-solid border-grey-50',
-    'focus-within:border-primary duration-150',
+    'bg-primary px-3 flex items-center gap-x-2 rounded',
+    'focus-within:border-secondary duration-150',
     'h-[46px] sm:h-[57px]',
     error ? '!border-error' : '',
     wrapperClass
@@ -59,23 +59,23 @@ const BInput = ({
   const inputClasses = [
     'grow !bg-transparent !text-transparent outline-none',
     'text-sm sm:text-base',
-    'placeholder:text-grey-500 placeholder:text-start',
+    'text-grey-50 placeholder:text-grey-200 placeholder:text-start',
     'w-full h-[46px] sm:h-[57px]',
     inputClass
   ].join(' ')
 
   return (
-    <div className='flex flex-col gap-y-1'>
+    <div className='flex flex-col gap-y-1' {...props}>
       {(label || labelSlot || labelAsideSlot) && (
         <div className='flex items-center justify-between'>
           <label
             htmlFor={`input-${id}`}
-            className={`text-xs sm:text-sm font-medium ${disabled ? 'text-grey-300' : 'text-grey-700'}`}
+            className={`text-xs sm:text-sm font-medium ${disabled ? 'text-grey-700' : 'text-grey-50'}`}
           >
             {label && (
               <>
                 {label}
-                {required && <span className={`${disabled ? 'text-grey-300' : 'text-error'}`}>*</span>}
+                {required && <span className={`${disabled ? 'text-grey-700' : 'text-error'}`}>*</span>}
               </>
             )}
           </label>
@@ -87,7 +87,7 @@ const BInput = ({
           <div className='flex items-center justify-center'>
             <FontAwesomeIcon
               icon={icon}
-              className={disabled ? 'text-grey-300' : 'text-grey-500'}
+              className={disabled ? 'text-grey-700' : 'text-grey-50'}
             />
           </div>
         )}

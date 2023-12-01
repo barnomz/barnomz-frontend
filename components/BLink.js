@@ -13,9 +13,10 @@ const BLink = ({
                  iconClass,
                  iconSize = 'sm',
                  postIcon,
-                 color = 'primary',
+                 color = 'secondary',
                  onClick,
-                 children
+                 children,
+                 ...props
                }) => {
 
   const classes = [
@@ -28,6 +29,8 @@ const BLink = ({
     color !== 'transparent' && 'hover:underline'
   ].join(' ')
 
+  props.className = props.className + ' ' + classes
+
   const renderIcon = (iconName, size, additionalClass) => {
     if (loading) {
       return <FontAwesomeIcon icon={faSpinner} spin size={size} className={additionalClass} />
@@ -39,7 +42,7 @@ const BLink = ({
   }
 
   return (
-    <Link href={to} target={target} passHref className={classes} onClick={onClick}>
+    <Link href={to} target={target} passHref onClick={onClick} {...props}>
       {(preIcon && !loading) && renderIcon(preIcon, iconSize, iconClass)}
 
       {icon || loading
@@ -55,9 +58,9 @@ const BLink = ({
 const getColorClasses = (color) => {
   switch (color) {
     case 'primary':
-      return 'text-primary-700'
+      return 'text-primary'
     case 'secondary':
-      return 'text-secondary-500'
+      return 'text-secondary-dark'
     case 'grey':
       return 'text-grey-600'
     case 'transparent':
