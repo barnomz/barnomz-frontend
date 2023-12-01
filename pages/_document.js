@@ -6,21 +6,21 @@ export default function Document() {
       <Head>
         <link
           rel='preload'
-          href='/fonts/IRANYekan/woff2/IRANYekanWebRegular.woff2'
+          href='/fonts/Vazirmatn/woff2/Vazirmatn-Regular.woff2'
           as='font'
           crossOrigin=''
           type='font/woff2'
         />
         <link
           rel='preload'
-          href='/fonts/IRANYekan/woff2/IRANYekanWebMedium.woff'
+          href='/fonts/Vazirmatn/woff2/Vazirmatn-Medium.woff2'
           as='font'
           crossOrigin=''
           type='font/woff2'
         />
         <link
           rel='preload'
-          href='/fonts/IRANYekan/woff2/IRANYekanWebBold.woff'
+          href='/fonts/Vazirmatn/woff2/Vazirmatn-Bold.woff2'
           as='font'
           crossOrigin=''
           type='font/woff2'
