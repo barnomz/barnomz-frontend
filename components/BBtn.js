@@ -87,7 +87,7 @@ const getColorClasses = (color) => {
     case 'primary-text':
       return 'text-primary-dark hover:border-primary-dark'
     case 'primary':
-      return 'bg-primary text-grey-50 hover:bg-primary'
+      return 'bg-primary text-grey-50 hover:bg-primary-light'
     case 'secondary-text':
       return 'text-secondary-dark hover:border-secondary-dark'
     case 'secondary':
