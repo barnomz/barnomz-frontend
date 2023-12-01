@@ -1,4 +1,4 @@
-import { colors } from './constants/palette.js'
+import colors from './constants/palette.js'
 
 module.exports = {
   content: [
@@ -7,7 +7,7 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    colors,
+    colors
   },
   plugins: [],
 }
