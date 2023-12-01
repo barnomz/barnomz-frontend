@@ -4,6 +4,7 @@ export default function Document() {
   return (
     <Html lang='fa'>
       <Head>
+        <link rel="shortcut icon" href="/images/barnomz-logo.svg" />
         <link
           rel='preload'
           href='/fonts/Vazirmatn/woff2/Vazirmatn-Regular.woff2'
