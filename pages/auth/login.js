@@ -33,9 +33,9 @@ export default function Login() {
   }
 
   return (
-    <div className='min-h-screen bg-dark-blue flex justify-center items-center'>
+    <div className='h-full bg-dark-blue flex justify-center items-center'>
       <div className='w-full max-w-md p-8 space-y-8 bg-light-blue rounded-xl'>
-        <h2 className='text-xl text-grey-900 font-bold'>ورود به برنومز</h2>
+        <h2 className='text-2xl text-grey-50 font-bold'>ورود به برنومز</h2>
         <BForm onSubmit={handleLogin}>
           <BInput
             label='نام کاربری'
