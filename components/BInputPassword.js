@@ -5,24 +5,24 @@ import BInput from './BInput'
 import BBtn from './BBtn'
 
 const BInputPassword = ({
-                          label,
-                          labelSlot,
-                          labelAsideSlot,
-                          placeholder,
-                          required = false,
-                          icon,
-                          readonly = false,
-                          disabled = false,
-                          wrapperClass,
-                          inputClass,
-                          error,
-                          dir = 'rtl',
-                          autofocus = false,
-                          autocomplete,
-                          validations = [],
-                          value,
-                          onChange
-                        }) => {
+  label,
+  hideLabel = false,
+  labelSlot,
+  labelAsideSlot,
+  placeholder,
+  required = false,
+  icon,
+  readonly = false,
+  disabled = false,
+  wrapperClass,
+  inputClass,
+  dir = 'ltr',
+  autofocus = false,
+  autocomplete,
+  validations = [],
+  onChange,
+  ...props
+}) => {
   const [show, setShow] = useState(false)
 
   const toggleShow = () => {
@@ -44,9 +44,8 @@ const BInputPassword = ({
 
   return (
     <BInput
-      value={value}
-      onChange={onChange}
       label={label}
+      hideLabel={hideLabel}
       labelSlot={labelSlot}
       labelAsideSlot={labelAsideSlot}
       appendSlot={appendSlot}
@@ -57,12 +56,13 @@ const BInputPassword = ({
       disabled={disabled}
       wrapperClass={wrapperClass}
       inputClass={inputClass}
-      error={error}
       dir={dir}
       autofocus={autofocus}
       type={type}
       autocomplete={autocomplete}
       validations={validations}
+      onChange={onChange}
+      {...props}
     />
   )
 }

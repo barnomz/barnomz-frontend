@@ -1,48 +1,54 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { validate } from '@/utils/validations'
 
 const BInput = ({
-                  label,
-                  labelSlot,
-                  labelAsideSlot,
-                  appendSlot,
-                  placeholder,
-                  required = false,
-                  icon,
-                  type = 'text',
-                  readonly = false,
-                  disabled = false,
-                  wrapperClass,
-                  inputClass,
-                  dir = 'rtl',
-                  autofocus = false,
-                  autocomplete,
-                  validations = [],
-                  value,
-                  onChange,
-                  ...props
-                }) => {
+  label,
+  hideLabel = false,
+  labelSlot,
+  labelAsideSlot,
+  appendSlot,
+  placeholder,
+  required = false,
+  icon,
+  type = 'text',
+  readonly = false,
+  disabled = false,
+  wrapperClass,
+  inputClass,
+  dir = 'ltr',
+  autofocus = false,
+  autocomplete,
+  validations = [],
+  onChange,
+  ...props
+}) => {
   const [id, setId] = useState(null)
   const [error, setError] = useState(null)
+  const [model, setModel] = useState('')
 
   useEffect(() => {
     setId(String(Math.floor(Math.random() * 99999999)))
-    if (autofocus) {
-      setTimeout(() => {
-        const inputEl = document.getElementById(`input-${id}`)
-        inputEl?.focus()
-      }, 0)
+  }, [])
+
+  useEffect(() => {
+    if (autofocus && id) {
+      const inputEl = document.getElementById(`input-${id}`)
+      inputEl?.focus()
     }
-  }, [autofocus])
+  }, [autofocus, id])
 
   const handleValidation = (event) => {
     const validationResult = validate(
       validations,
       event.target.value,
-      `input-${id}`
+      `input-${id}`,
     )
     setError(validationResult.error)
+  }
+
+  const onChangeWrapper = (event) => {
+    setModel(event.target.value)
     if (onChange) {
       onChange(event)
     }
@@ -53,15 +59,15 @@ const BInput = ({
     'focus-within:border-secondary duration-150',
     'h-[46px] sm:h-[57px]',
     error ? '!border-error' : '',
-    wrapperClass
+    wrapperClass,
   ].join(' ')
 
   const inputClasses = [
     'grow !bg-transparent !text-transparent outline-none',
     'text-sm sm:text-base',
-    'text-grey-50 placeholder:text-grey-200 placeholder:text-start',
+    'text-grey-50 placeholder:text-grey-200 placeholder:text-right',
     'w-full h-[46px] sm:h-[57px]',
-    inputClass
+    inputClass,
   ].join(' ')
 
   return (
@@ -70,12 +76,20 @@ const BInput = ({
         <div className='flex items-center justify-between'>
           <label
             htmlFor={`input-${id}`}
-            className={`text-xs sm:text-sm font-medium ${disabled ? 'text-grey-700' : 'text-grey-50'}`}
+            className={`text-xs font-medium sm:text-sm ${
+              disabled ? 'text-grey-700' : 'text-grey-50'
+            }`}
           >
             {label && (
               <>
                 {label}
-                {required && <span className={`${disabled ? 'text-grey-700' : 'text-error'}`}>*</span>}
+                {required && (
+                  <span
+                    className={`${disabled ? 'text-grey-700' : 'text-error'}`}
+                  >
+                    *
+                  </span>
+                )}
               </>
             )}
           </label>
@@ -94,7 +108,7 @@ const BInput = ({
 
         <input
           id={`input-${id}`}
-          value={value}
+          value={model}
           placeholder={placeholder}
           className={inputClasses}
           type={type}
@@ -103,18 +117,17 @@ const BInput = ({
           dir={dir}
           autoComplete={autocomplete}
           onInput={handleValidation}
-          onChange={handleValidation}
+          onChange={onChangeWrapper}
         />
 
-        {appendSlot &&
-          (<div
-            className='tw-flex tw-items-center tw-justify-center'
-          >
+        {appendSlot && (
+          <div className='tw-flex tw-items-center tw-justify-center'>
             {appendSlot}
-          </div>)}
+          </div>
+        )}
       </div>
 
-      <div className='text-error text-xs min-h-[24px]'>
+      <div className='min-h-[24px] text-xs text-error'>
         {error && <span>{error}</span>}
       </div>
     </div>
