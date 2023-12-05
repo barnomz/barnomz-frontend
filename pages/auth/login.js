@@ -7,7 +7,14 @@ import BInputPassword from '@/components/BInputPassword'
 import BBtn from '@/components/BBtn'
 import Head from 'next/head'
 import BLink from '@/components/BLink'
-import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import {
+  hasLetter,
+  hasNumber,
+  hasValue,
+  lengthIsEqualTo,
+  lengthIsGreaterOrEqualThan,
+} from '@/utils/validations'
 
 export default function Login() {
   const [credentials, setCredentials] = useState({ username: '', password: '' })
@@ -19,7 +26,7 @@ export default function Login() {
     const result = await signIn('credentials', {
       redirect: false,
       username: credentials.username,
-      password: credentials.password
+      password: credentials.password,
     })
 
     if (result.ok && result.url) {
@@ -30,29 +37,46 @@ export default function Login() {
   const updateField = (field) => (event) => {
     setCredentials({
       ...credentials,
-      [field]: event.target.value
+      [field]: event.target.value,
     })
   }
+
+  const studentNumberValidations = [
+    { rule: hasValue, message: 'وارد کردن شماره دانشجویی الزامی است.' },
+    { rule: lengthIsEqualTo([8, 9]), message: 'شماره دانشجویی معتبر نیست.' },
+  ]
+
+  const passwordValidations = [
+    { rule: hasValue, message: 'وارد کردن رمز عبور الزامی است.' },
+    { rule: hasLetter, message: 'رمز عبور باید شامل حروف باشد.' },
+    { rule: hasNumber, message: 'رمز عبور باید شامل اعداد باشد.' },
+    {
+      rule: lengthIsGreaterOrEqualThan(8),
+      message: 'رمز عبور باید حداقل ۸ کاراکتر باشد.',
+    },
+  ]
 
   return (
     <>
       <Head>
         <title>برنومز - ورود</title>
       </Head>
-      <div className='h-full bg-dark-blue flex justify-center items-center'>
-        <div className='bg-primary/50 backdrop-blur w-full max-w-md p-8 space-y-8 bg-light-blue rounded-xl'>
-          <h2 className='text-2xl text-grey-50 font-bold'>ورود به برنومز</h2>
+      <div className='bg-dark-blue flex h-full items-center justify-center'>
+        <div className='bg-light-blue w-full max-w-md space-y-8 rounded-xl bg-primary/50 p-8 backdrop-blur'>
+          <h2 className='text-2xl font-bold text-grey-50'>ورود به برنومز</h2>
           <BForm onSubmit={handleLogin}>
             <BInput
-              label='نام کاربری'
-              placeholder='نام کاربری خود را وارد نمایید'
-              value={credentials.username}
+              required
+              label='شماره دانشجویی'
+              placeholder='شماره دانشجویی خود را وارد نمایید'
+              validations={studentNumberValidations}
               onChange={updateField('username')}
             />
             <BInputPassword
+              required
               label='رمز عبور'
               placeholder='رمز عبور خود را وارد نمایید'
-              value={credentials.password}
+              validations={passwordValidations}
               onChange={updateField('password')}
             />
             <BBtn type='submit' className='mb-4' block>
@@ -76,12 +100,12 @@ export async function getServerSideProps(context) {
     return {
       redirect: {
         destination: '/home',
-        permanent: false
-      }
+        permanent: false,
+      },
     }
   }
 
   return {
-    props: { session }
+    props: { session },
   }
 }
