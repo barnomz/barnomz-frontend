@@ -1,3 +1,4 @@
+// Helpers
 export function validate(validations, value, inputId) {
   let status = true
   let error = null
@@ -21,8 +22,8 @@ export function validate(validations, value, inputId) {
   if (inputEl) {
     inputEl.dispatchEvent(
       new CustomEvent('validate', {
-        detail: { key: inputId, value: status }
-      })
+        detail: { key: inputId, value: status },
+      }),
     )
   }
 
@@ -30,8 +31,20 @@ export function validate(validations, value, inputId) {
 }
 
 // Validation Book
+export function isNullOrUndefined(value) {
+  return value === undefined || value === null
+}
+
 export function hasValue(value) {
-  return !!value?.length
+  return !isNullOrUndefined(value) && !!value.length
+}
+
+export function isGreaterOrEqualThan(amount) {
+  return (value) => hasValue(value) && value >= amount
+}
+
+export function isLessOrEqualThan(amount) {
+  return (value) => hasValue(value) && value <= amount
 }
 
 export function lengthIsGreaterOrEqualThan(count) {
@@ -42,6 +55,12 @@ export function lengthIsLessOrEqualThan(count) {
   return (value) => hasValue(value) && value.length <= count
 }
 
+export function lengthIsEqualTo(count) {
+  if (Array.isArray(count))
+    return (value) => count.some((c) => hasValue(value) && value.length === c)
+  return (value) => hasValue(value) && value.length === count
+}
+
 export function hasNumber(value) {
   const reg = /\d/
   return reg.test(value)
@@ -49,6 +68,16 @@ export function hasNumber(value) {
 
 export function hasLetter(value) {
   const reg = /[a-zA-Z]/
+  return reg.test(value)
+}
+
+export function isNumber(value) {
+  const reg = /^\d+$/
+  return reg.test(value)
+}
+
+export function isLetter(value) {
+  const reg = /^[A-Za-z]+$/
   return reg.test(value)
 }
 
