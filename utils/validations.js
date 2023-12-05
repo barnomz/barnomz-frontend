@@ -61,6 +61,10 @@ export function lengthIsEqualTo(count) {
   return (value) => hasValue(value) && value.length === count
 }
 
+export function valueIsEqualTo(value) {
+  return (v) => hasValue(v) && v === value
+}
+
 export function hasNumber(value) {
   const reg = /\d/
   return reg.test(value)
