@@ -16,7 +16,6 @@ import {
   lengthIsGreaterOrEqualThan,
   valueIsEqualTo,
 } from '@/utils/validations'
-import Recaptcha from '@/components/auth/register/Recaptcha'
 
 export default function Register() {
   const [credentials, setCredentials] = useState({
@@ -107,11 +106,10 @@ export default function Register() {
               validations={confirmPasswordValidations}
               onChange={updateField('confirmPassword')}
             />
-            <Recaptcha />
             <BBtn type='submit' className='mb-4' block>
               ثبت‌نام
             </BBtn>
-            <BLink to='/auth/register' postIcon={faArrowLeft} iconSize='1x'>
+            <BLink to='/auth/login' postIcon={faArrowLeft} iconSize='1x'>
               قبلا در برنومز ثبت‌نام کرده‌اید؟
             </BLink>
           </BForm>
