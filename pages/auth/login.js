@@ -67,7 +67,7 @@ export default function Login() {
           <BForm onSubmit={handleLogin}>
             <BInput
               required
-              label='شماره دانشجویی'
+              label='نام کاربری'
               placeholder='شماره دانشجویی خود را وارد نمایید'
               validations={studentNumberValidations}
               onChange={updateField('username')}
