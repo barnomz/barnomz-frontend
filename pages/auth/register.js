@@ -79,7 +79,7 @@ export default function Register() {
   return (
     <>
       <Head>
-        <title>برنومز - ثبت‌نام</title>
+        <title>برنومز | ثبت‌نام</title>
       </Head>
       <div className='bg-dark-blue flex h-full items-center justify-center'>
         <div className='bg-light-blue w-full max-w-md space-y-8 rounded-xl bg-primary/50 p-8 backdrop-blur'>
