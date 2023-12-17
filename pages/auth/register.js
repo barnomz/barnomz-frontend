@@ -65,7 +65,7 @@ export default function Register() {
   ]
 
   const confirmPasswordValidations = [
-    { rule: hasValue, message: 'وارد کردن رمز عبور الزامی است.' },
+    { rule: hasValue, message: 'وارد کردن تکرار رمز عبور الزامی است.' },
     { rule: hasLetter, message: 'رمز عبور باید شامل حروف باشد.' },
     { rule: hasNumber, message: 'رمز عبور باید شامل اعداد باشد.' },
     {
