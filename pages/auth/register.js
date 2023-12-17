@@ -15,6 +15,8 @@ import {
   lengthIsGreaterOrEqualThan,
   valueIsEqualTo,
 } from '@/utils/validations'
+import BToast from '@/components/dls/toast/BToast'
+import { useToast } from '@/components/dls/toast/ToastService'
 
 export default function Register() {
   const [credentials, setCredentials] = useState({
@@ -23,9 +25,21 @@ export default function Register() {
     confirmPassword: '',
   })
   const router = useRouter()
+  const toast = useToast()
+  const successToast = (
+    <BToast type='success' message='ثبت‌نام شما موفقیت‌آمیز بود.' />
+  )
+  const errorToast = (
+    <BToast type='error' message='فیلدها را به درستی مقداردهی کنید' />
+  )
 
   const handleRegister = async (isFormValid) => {
-    if (!isFormValid) return
+    if (!isFormValid) {
+      toast.open(errorToast)
+      return
+    }
+
+    toast.open(successToast)
 
     const result = await signIn('credentials', {
       redirect: false,
