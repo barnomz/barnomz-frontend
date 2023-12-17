@@ -47,9 +47,12 @@ export default function Register() {
     })
   }
 
-  const studentNumberValidations = [
-    { rule: hasValue, message: 'وارد کردن شماره دانشجویی الزامی است.' },
-    { rule: lengthIsEqualTo([8, 9]), message: 'شماره دانشجویی معتبر نیست.' },
+  const usernameValidations = [
+    { rule: hasValue, message: 'وارد کردن نام کاربری الزامی است.' },
+    {
+      rule: lengthIsGreaterOrEqualThan(5),
+      message: 'نام کاربری باید حداقل ۵ کاراکتر باشد.',
+    },
   ]
 
   const passwordValidations = [
@@ -87,9 +90,9 @@ export default function Register() {
           <BForm onSubmit={handleRegister}>
             <BInput
               required
-              label='شماره دانشجویی'
-              placeholder='شماره دانشجویی خود را وارد نمایید'
-              validations={studentNumberValidations}
+              label='نام کاربری'
+              placeholder='نام کاربری خود را وارد نمایید'
+              validations={usernameValidations}
               onChange={updateField('username')}
             />
             <BInputPassword
