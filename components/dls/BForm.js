@@ -19,7 +19,6 @@ const BForm = ({ onSubmit, children }) => {
     event.preventDefault()
     if (onSubmit) {
       validateAll().then((isFormValid) => {
-        console.log('isFormValid', isFormValid)
         onSubmit(isFormValid)
       })
     }
@@ -27,15 +26,9 @@ const BForm = ({ onSubmit, children }) => {
 
   const validateAll = (showError = true) => {
     return new Promise((resolve) => {
-      const results = Array.from(inputElements).map((inputEl) => {
-        // inputEl.dispatchEvent(new Event('input', { bubbles: true }))
-        console.log('inputEl.value', inputEl.value)
-        const { status } = inputEl.validate(
-          { target: { value: inputEl.value } },
-          showError,
-        )
-        return { status }
-      })
+      const results = Array.from(inputElements).map((inputEl) =>
+        inputEl.validate({ target: { value: inputEl.value } }, showError),
+      )
       setTimeout(() => {
         resolve(results.every((result) => result.status))
       }, 0)

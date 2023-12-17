@@ -48,7 +48,6 @@ export function lengthIsEqualTo(count) {
 }
 
 export function valueIsEqualTo(value) {
-  console.log('value', value)
   return (v) => v === value
 }
 
