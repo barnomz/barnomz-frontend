@@ -9,7 +9,11 @@ export default function NavBar() {
   // const session = true
 
   const navBarEndLoggedIn = (
-    <BBtn color='primary' className='h-[2.25rem]' onClick={() => signOut({ callbackUrl: '/' })}>
+    <BBtn
+      color='primary'
+      className='h-[2.25rem]'
+      onClick={() => signOut({ callbackUrl: '/' })}
+    >
       خروج
     </BBtn>
   )
@@ -26,13 +30,10 @@ export default function NavBar() {
   )
 
   return (
-    <div
-      className='px-[1.5rem] py-[0.75rem] h-[3.75rem] w-full flex justify-between items-center bg-primary/50 backdrop-blur'>
+    <div className='flex h-[3.75rem] w-full items-center justify-between bg-primary/50 px-[1.5rem] py-[0.75rem] backdrop-blur'>
       <Image src={logoSvg} alt='Barnomz Logo' />
       {session && <NavBarMenu />}
-      {
-        session ? navBarEndLoggedIn : navBarEndLoggedOut
-      }
+      {session ? navBarEndLoggedIn : navBarEndLoggedOut}
     </div>
   )
 }
