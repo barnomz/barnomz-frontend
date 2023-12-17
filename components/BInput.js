@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { validate } from '@/utils/validations'
+import { convertPersianNumberToEnglish } from '@/utils/helpers'
 
 const BInput = ({
   label,
@@ -31,24 +32,25 @@ const BInput = ({
     setId(String(Math.floor(Math.random() * 99999999)))
   }, [])
 
-  useEffect(() => {
-    if (autofocus && id) {
-      const inputEl = document.getElementById(`input-${id}`)
-      inputEl?.focus()
-    }
-  }, [autofocus, id])
-
-  const handleValidation = (event) => {
-    const validationResult = validate(
+  const handleValidation = (event, showError = true) => {
+    const result = validate(
       validations,
-      event.target.value,
-      `input-${id}`,
+      convertPersianNumberToEnglish(event.target.value),
     )
-    setError(validationResult.error)
+    showError && setError(result.error)
+    return result
   }
 
+  useEffect(() => {
+    const inputEl = document.getElementById(`input-${id}`)
+    inputEl.validate = handleValidation
+    if (autofocus && id) {
+      inputEl?.focus()
+    }
+  }, [autofocus, id, validations])
+
   const onChangeWrapper = (event) => {
-    setModel(event.target.value)
+    setModel(convertPersianNumberToEnglish(event.target.value))
     if (onChange) {
       onChange(event)
     }
@@ -56,9 +58,9 @@ const BInput = ({
 
   const wrapperClasses = [
     'bg-primary px-3 flex items-center gap-x-2 rounded',
-    'focus-within:border-secondary duration-150',
+    'focus-within:border-secondary focus-within:border-solid focus-within:border-[1px]',
     'h-[46px] sm:h-[57px]',
-    error ? '!border-error' : '',
+    error && '!border-error',
     wrapperClass,
   ].join(' ')
 

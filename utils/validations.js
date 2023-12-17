@@ -1,30 +1,16 @@
 // Helpers
-export function validate(validations, value, inputId) {
+export function validate(validations, value) {
   let status = true
   let error = null
 
   if (!validations?.length) return { status, error }
 
   for (const validation of validations) {
-    if (validation.rule(value)) {
-      error = null
-      status = true
-      continue
-    }
+    if (validation.rule(value)) continue
 
     error = validation.message
     status = false
     break
-  }
-
-  const inputEl = document.getElementById(inputId)
-
-  if (inputEl) {
-    inputEl.dispatchEvent(
-      new CustomEvent('validate', {
-        detail: { key: inputId, value: status },
-      }),
-    )
   }
 
   return { status, error }
@@ -62,7 +48,8 @@ export function lengthIsEqualTo(count) {
 }
 
 export function valueIsEqualTo(value) {
-  return (v) => hasValue(v) && v === value
+  console.log('value', value)
+  return (v) => v === value
 }
 
 export function hasNumber(value) {
