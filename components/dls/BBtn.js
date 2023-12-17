@@ -3,41 +3,54 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import BLink from './BLink'
 
 const BBtn = ({
-                to,
-                target = '_self',
-                block = false,
-                disabled = false,
-                loading = false,
-                preIcon,
-                icon,
-                iconClass,
-                iconSize = 'md',
-                postIcon,
-                color = 'secondary',
-                onClick,
-                children,
-                ...props
-              }) => {
+  to,
+  target = '_self',
+  block = false,
+  disabled = false,
+  loading = false,
+  preIcon,
+  icon,
+  iconClass,
+  iconSize = 'md',
+  postIcon,
+  color = 'secondary',
+  onClick,
+  children,
+  ...props
+}) => {
   const classes = [
     'flex justify-center items-center gap-x-2 ripple',
-    'text-sm font-medium outline-none duration-150',
+    'text-sm font-medium outline-none transition-all duration-200',
     color.includes('-text')
       ? 'hover:underline underline-offset-8'
       : 'py-2 sm:py-3 px-4 rounded',
     disabled
       ? 'bg-grey-50 text-grey-200 cursor-default pointer-events-none'
       : getColorClasses(color),
-    block && 'w-full'
+    block && 'w-full',
   ].join(' ')
 
   props.className = props.className + ' ' + classes
 
   const renderIcon = (iconName, size, additionalClass) => {
     if (loading) {
-      return <FontAwesomeIcon icon={faSpinner} spin size={size} className={additionalClass} />
+      return (
+        <FontAwesomeIcon
+          icon={faSpinner}
+          spin
+          size={size}
+          className={additionalClass}
+        />
+      )
     }
     if (iconName) {
-      return <FontAwesomeIcon icon={iconName} size={size} className={additionalClass} />
+      return (
+        <FontAwesomeIcon
+          icon={iconName}
+          size={size}
+          className={additionalClass}
+        />
+      )
     }
     return null
   }
@@ -65,19 +78,14 @@ const BBtn = ({
   }
 
   return (
-    <button
-      disabled={disabled}
-      onClick={onClick}
-      {...props}
-    >
-      {(preIcon && !loading) && renderIcon(preIcon, iconSize, iconClass)}
+    <button disabled={disabled} onClick={onClick} {...props}>
+      {preIcon && !loading && renderIcon(preIcon, iconSize, iconClass)}
 
-      {(icon || loading)
+      {icon || loading
         ? renderIcon(loading ? faSpinner : icon, iconSize, iconClass)
-        : children
-      }
+        : children}
 
-      {(postIcon && !loading) && renderIcon(postIcon, iconSize, iconClass)}
+      {postIcon && !loading && renderIcon(postIcon, iconSize, iconClass)}
     </button>
   )
 }
