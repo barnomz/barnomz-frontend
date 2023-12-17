@@ -1,5 +1,6 @@
 @import 'input.css';
 @import 'ripple.css';
+@import 'full-calendar.css';
 
 @tailwind base;
 @tailwind components;
