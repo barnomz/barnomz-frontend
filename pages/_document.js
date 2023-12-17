@@ -4,7 +4,28 @@ export default function Document() {
   return (
     <Html lang='fa'>
       <Head>
-        <link rel="shortcut icon" href="/images/barnomz-logo.svg" />
+        <link rel='shortcut icon' href='/images/barnomz-logo.svg' />
+        <link
+          rel='preload'
+          href='/fonts/Inter/woff2/Inter-Regular.woff2'
+          as='font'
+          crossOrigin=''
+          type='font/woff2'
+        />
+        <link
+          rel='preload'
+          href='/fonts/Inter/woff2/Inter-Medium.woff2'
+          as='font'
+          crossOrigin=''
+          type='font/woff2'
+        />
+        <link
+          rel='preload'
+          href='/fonts/Inter/woff2/Inter-Bold.woff2'
+          as='font'
+          crossOrigin=''
+          type='font/woff2'
+        />
         <link
           rel='preload'
           href='/fonts/Vazirmatn/woff2/Vazirmatn-Regular.woff2'
@@ -28,8 +49,8 @@ export default function Document() {
         />
       </Head>
       <body dir={'rtl'}>
-      <Main />
-      <NextScript />
+        <Main />
+        <NextScript />
       </body>
     </Html>
   )

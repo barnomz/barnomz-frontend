@@ -10,7 +10,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Regular.woff2') format('woff'), local(arial), url('/fonts/Vazirmatn/woff2/Vazirmatn-Regular.ttf') format('truetype'), local(arial);
+  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Regular.woff2') format('woff'), url('/fonts/Vazirmatn/ttf/Vazirmatn-Regular.ttf') format('truetype'), local(arial);
 }
 
 @font-face {
@@ -18,7 +18,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Medium.woff2') format('woff'), local(arial), url('/fonts/Vazirmatn/woff2/Vazirmatn-Medium.ttf') format('truetype'), local(arial);
+  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Medium.woff2') format('woff'), url('/fonts/Vazirmatn/ttf/Vazirmatn-Medium.ttf') format('truetype'), local(arial);
 }
 
 @font-face {
@@ -26,12 +26,36 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Bold.woff2') format('woff'), local(arial), url('/fonts/Vazirmatn/woff2/Vazirmatn-Bold.ttf') format('truetype'), local(arial);
+  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Bold.woff2') format('woff'), url('/fonts/Vazirmatn/ttf/Vazirmatn-Bold.ttf') format('truetype'), local(arial);
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter/woff2/Inter-Regular.woff2') format('woff');
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Inter/woff2/Inter-Medium.woff2') format('woff');
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Inter/woff2/Inter-Bold.woff2') format('woff');
 }
 
 @layer base {
   html {
-    font-family: Vazirmatn, sans-serif;
+    font-family: Inter, Vazirmatn, sans-serif;
   }
 }
 
