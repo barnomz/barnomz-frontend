@@ -41,9 +41,9 @@ export default function Login() {
     })
   }
 
-  const studentNumberValidations = [
-    { rule: hasValue, message: 'وارد کردن شماره دانشجویی الزامی است.' },
-    { rule: lengthIsEqualTo([8, 9]), message: 'شماره دانشجویی معتبر نیست.' },
+  const usernameValidations = [
+    { rule: hasValue, message: 'وارد کردن نام کاربری الزامی است.' },
+    { rule: lengthIsGreaterOrEqualThan(5), message: 'نام کاربری باید حداقل ۵ کاراکتر باشد.' },
   ]
 
   const passwordValidations = [
@@ -68,8 +68,8 @@ export default function Login() {
             <BInput
               required
               label='نام کاربری'
-              placeholder='شماره دانشجویی خود را وارد نمایید'
-              validations={studentNumberValidations}
+              placeholder='نام کاربری خود را وارد نمایید'
+              validations={usernameValidations}
               onChange={updateField('username')}
             />
             <BInputPassword
