@@ -19,7 +19,7 @@ const BBtn = ({
                 ...props
               }) => {
   const classes = [
-    'flex justify-center items-center gap-x-2',
+    'flex justify-center items-center gap-x-2 ripple',
     'text-sm font-medium outline-none duration-150',
     color.includes('-text')
       ? 'hover:underline underline-offset-8'

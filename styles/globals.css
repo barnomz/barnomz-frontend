@@ -1,4 +1,5 @@
 @import 'input.css';
+@import 'ripple.css';
 
 @tailwind base;
 @tailwind components;
