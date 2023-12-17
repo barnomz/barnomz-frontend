@@ -11,48 +11,47 @@ const navigations = [
   {
     id: 1,
     title: 'ساخت برنامه',
-    link: '/schedule'
+    link: '/schedule',
   },
   {
     id: 2,
     title: 'جستجو برنامه',
-    link: '/auth/login'
+    link: '/auth/login',
   },
   {
     id: 3,
     title: 'امتحانات',
-    link: '/auth/register'
+    link: '/auth/register',
   },
   {
     id: 4,
     title: 'نمره‌دهی به استاتید',
-    link: '/lecturers'
-  }
+    link: '/lecturers',
+  },
 ]
 
 export default function NavBarMenu() {
   const router = useRouter()
 
-  const [activeNavIndex] = useState(navigations.findIndex(
-    (nav) => nav.link === router.asPath
-  ))
+  const [activeNavIndex] = useState(
+    navigations.findIndex((nav) => nav.link === router.asPath),
+  )
 
   return (
     <Tab.Group defaultIndex={activeNavIndex}>
-      <Tab.List className='flex gap-2 h-full'>
+      <Tab.List className='flex h-full gap-2'>
         {navigations.map((nav) => (
           <Tab key={nav.id} as={Fragment} className='h-full'>
             {({ selected }) => (
-              <Link href={nav.link}
-                    className={
-                      classNames(
-                        'h-full text-sm font-bold',
-                        'focus:outline-none py-2 px-4 hover:bg-primary rounded-t-md',
-                        selected
-                          ? 'text-white border-b-4 border-solid border-secondary'
-                          : 'text-grey-200 hover:text-white'
-                      )
-                    }
+              <Link
+                href={nav.link}
+                className={classNames(
+                  'h-full text-sm font-bold',
+                  'rounded-t-md px-4 py-2 hover:bg-primary focus-visible:outline-none',
+                  selected
+                    ? 'border-b-4 border-solid border-secondary text-white'
+                    : 'text-grey-200 hover:text-white',
+                )}
               >
                 {nav.title}
               </Link>
