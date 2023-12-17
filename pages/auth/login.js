@@ -85,7 +85,12 @@ export default function Login() {
             <BBtn type='submit' className='mb-4' block>
               ورود
             </BBtn>
-            <BLink to='/auth/register' postIcon={faArrowLeft} iconSize='1x'>
+            <BLink
+              to='/auth/register'
+              iconSize='1x'
+              postIcon={faArrowLeft}
+              className='mx-auto max-w-fit'
+            >
               ثبت‌نام نکرده‌اید؟
             </BLink>
           </BForm>

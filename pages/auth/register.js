@@ -125,7 +125,12 @@ export default function Register() {
             <BBtn type='submit' className='mb-4' block>
               ثبت‌نام
             </BBtn>
-            <BLink to='/auth/login' postIcon={faArrowLeft} iconSize='1x'>
+            <BLink
+              to='/auth/login'
+              iconSize='1x'
+              postIcon={faArrowLeft}
+              className='mx-auto max-w-fit'
+            >
               قبلا در برنومز ثبت‌نام کرده‌اید؟
             </BLink>
           </BForm>

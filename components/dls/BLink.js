@@ -24,44 +24,30 @@ const BLink = ({
     disabled
       ? 'text-grey-200 cursor-default pointer-events-none'
       : getColorClasses(color),
-    block && 'w-full',
-    color !== 'transparent' && 'hover:underline',
+    block ? 'w-full' : '',
+    color !== 'transparent' ? 'hover:underline' : '',
   ].join(' ')
 
-  props.className = props.className + ' ' + classes
+  console.log(props)
+  props.className = props.className ? props.className + ' ' + classes : classes
 
-  const renderIcon = (iconName, size, additionalClass) => {
-    if (loading) {
-      return (
-        <FontAwesomeIcon
-          icon={faSpinner}
-          spin
-          size={size}
-          className={additionalClass}
-        />
-      )
-    }
-    if (iconName) {
-      return (
-        <FontAwesomeIcon
-          icon={iconName}
-          size={size}
-          className={additionalClass}
-        />
-      )
-    }
-    return null
+  const renderIcon = (iconName) => {
+    if (!iconName) return null
+    return (
+      <FontAwesomeIcon
+        icon={iconName}
+        spin={loading}
+        size={iconSize}
+        className={iconClass}
+      />
+    )
   }
 
   return (
     <Link href={to} target={target} passHref onClick={onClick} {...props}>
-      {preIcon && !loading && renderIcon(preIcon, iconSize, iconClass)}
-
-      {icon || loading
-        ? renderIcon(loading ? faSpinner : icon, iconSize, iconClass)
-        : children}
-
-      {postIcon && !loading && renderIcon(postIcon, iconSize, iconClass)}
+      {preIcon && !loading && renderIcon(preIcon)}
+      {icon || loading ? renderIcon(loading ? faSpinner : icon) : children}
+      {postIcon && !loading && renderIcon(postIcon)}
     </Link>
   )
 }
