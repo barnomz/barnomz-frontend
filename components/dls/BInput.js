@@ -58,9 +58,9 @@ const BInput = ({
 
   const wrapperClasses = [
     'bg-primary px-3 flex items-center gap-x-2 rounded',
-    'focus-within:border-secondary focus-within:border-solid focus-within:border-[1px]',
+    'focus-within:ring-secondary focus-within:ring-solid focus-within:ring-[1px] transition-all duration-200',
     'h-[46px] sm:h-[57px]',
-    error && '!border-error',
+    error && '!ring-error',
     wrapperClass,
   ].join(' ')
 
