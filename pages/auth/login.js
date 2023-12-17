@@ -64,8 +64,8 @@ export default function Login() {
       <Head>
         <title>برنومز | ورود</title>
       </Head>
-      <div className='bg-dark-blue flex h-full items-center justify-center'>
-        <div className='bg-light-blue w-full max-w-md space-y-8 rounded-xl bg-primary/50 p-8 backdrop-blur'>
+      <div className='flex h-full items-center justify-center'>
+        <div className='w-full max-w-md space-y-8 rounded-xl bg-primary/50 p-8 backdrop-blur'>
           <h2 className='text-2xl font-bold text-grey-50'>ورود به برنومز</h2>
           <BForm onSubmit={handleLogin}>
             <BInput
