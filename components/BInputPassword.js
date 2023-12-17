@@ -24,7 +24,8 @@ const BInputPassword = ({
 }) => {
   const [show, setShow] = useState(false)
 
-  const toggleShow = () => {
+  const toggleShow = (event) => {
+    event.preventDefault()
     setShow(!show)
   }
 
