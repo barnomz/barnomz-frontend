@@ -43,17 +43,10 @@ export default function Login() {
 
   const usernameValidations = [
     { rule: hasValue, message: 'وارد کردن نام کاربری الزامی است.' },
-    { rule: lengthIsGreaterOrEqualThan(5), message: 'نام کاربری باید حداقل ۵ کاراکتر باشد.' },
   ]
 
   const passwordValidations = [
     { rule: hasValue, message: 'وارد کردن رمز عبور الزامی است.' },
-    { rule: hasLetter, message: 'رمز عبور باید شامل حروف باشد.' },
-    { rule: hasNumber, message: 'رمز عبور باید شامل اعداد باشد.' },
-    {
-      rule: lengthIsGreaterOrEqualThan(8),
-      message: 'رمز عبور باید حداقل ۸ کاراکتر باشد.',
-    },
   ]
 
   return (
