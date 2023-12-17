@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import BInput from './BInput'
 import BBtn from './BBtn'
@@ -32,14 +31,14 @@ const BInputPassword = ({
   const type = show ? 'text' : 'password'
 
   const appendSlot = (
-    <BBtn
-      icon={show ? faEye : faEyeSlash}
-      iconSize={'sm'}
-      color='grey-text'
-      onClick={toggleShow}
-    >
-      <FontAwesomeIcon icon={show ? faEye : faEyeSlash} size='lg' />
-    </BBtn>
+    <div className='flex h-6 w-6 items-center justify-center'>
+      <BBtn
+        icon={show ? faEye : faEyeSlash}
+        iconSize={'lg'}
+        color='grey-text'
+        onClick={toggleShow}
+      ></BBtn>
+    </div>
   )
 
   return (
