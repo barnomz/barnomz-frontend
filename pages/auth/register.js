@@ -12,7 +12,6 @@ import {
   hasLetter,
   hasNumber,
   hasValue,
-  lengthIsEqualTo,
   lengthIsGreaterOrEqualThan,
   valueIsEqualTo,
 } from '@/utils/validations'
@@ -105,7 +104,7 @@ export default function Register() {
             <BInputPassword
               required
               label='تکرار رمز عبور'
-              placeholder='رمز عبور خود را وارد نمایید'
+              placeholder='رمز عبور خود را مجدداً وارد نمایید'
               validations={confirmPasswordValidations}
               onChange={updateField('confirmPassword')}
             />
