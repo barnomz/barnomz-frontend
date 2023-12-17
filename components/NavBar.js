@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import logoSvg from '@/public/images/barnomz-horizontal-logo.svg'
-import BBtn from '@/components/BBtn'
+import BBtn from '@/components/dls/BBtn'
 import { signOut, useSession } from 'next-auth/react'
 import NavBarMenu from '@/components/NavBarMenu'
 

@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { getSession, signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import BForm from '@/components/BForm'
-import BInput from '@/components/BInput'
-import BInputPassword from '@/components/BInputPassword'
-import BBtn from '@/components/BBtn'
+import BForm from '@/components/dls/BForm'
+import BInput from '@/components/dls/BInput'
+import BInputPassword from '@/components/dls/BInputPassword'
+import BBtn from '@/components/dls/BBtn'
 import Head from 'next/head'
-import BLink from '@/components/BLink'
+import BLink from '@/components/dls/BLink'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import {
   hasLetter,
