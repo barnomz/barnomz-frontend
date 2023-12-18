@@ -28,7 +28,6 @@ const BLink = ({
     color !== 'transparent' ? 'hover:underline' : '',
   ].join(' ')
 
-  console.log(props)
   props.className = props.className ? props.className + ' ' + classes : classes
 
   const renderIcon = (iconName) => {

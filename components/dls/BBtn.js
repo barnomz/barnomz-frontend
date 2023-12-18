@@ -27,7 +27,7 @@ const BBtn = ({
     disabled
       ? 'bg-grey-50 text-grey-200 cursor-default pointer-events-none'
       : getColorClasses(color),
-    block && 'w-full',
+    block ? 'w-full' : '',
   ].join(' ')
 
   props.className = props.className ? props.className + ' ' + classes : classes
@@ -81,6 +81,8 @@ const getColorClasses = (color) => {
       return 'text-primary-dark hover:border-primary-dark'
     case 'primary':
       return 'bg-primary text-grey-50 hover:bg-primary-light'
+    case 'primary-light':
+      return 'bg-primary-light text-grey-50 hover:bg-primary-lighter'
     case 'secondary-text':
       return 'text-secondary-dark hover:border-secondary-dark'
     case 'secondary':
