@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Regular.woff2') format('woff'), url('/fonts/Vazirmatn/ttf/Vazirmatn-Regular.ttf') format('truetype'), local(arial);
+  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Regular.woff2') format('woff2'), url('/fonts/Vazirmatn/ttf/Vazirmatn-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Medium.woff2') format('woff'), url('/fonts/Vazirmatn/ttf/Vazirmatn-Medium.ttf') format('truetype'), local(arial);
+  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Medium.woff2') format('woff2'), url('/fonts/Vazirmatn/ttf/Vazirmatn-Medium.ttf') format('truetype');
 }
 
 @font-face {
@@ -27,7 +27,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Bold.woff2') format('woff'), url('/fonts/Vazirmatn/ttf/Vazirmatn-Bold.ttf') format('truetype'), local(arial);
+  src: url('/fonts/Vazirmatn/woff2/Vazirmatn-Bold.woff2') format('woff2'), url('/fonts/Vazirmatn/ttf/Vazirmatn-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -35,7 +35,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/Inter/woff2/Inter-Regular.woff2') format('woff');
+  src: url('/fonts/Inter/woff2/Inter-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -43,7 +43,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/fonts/Inter/woff2/Inter-Medium.woff2') format('woff');
+  src: url('/fonts/Inter/woff2/Inter-Medium.woff2') format('woff2');
 }
 
 @font-face {
@@ -51,7 +51,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/Inter/woff2/Inter-Bold.woff2') format('woff');
+  src: url('/fonts/Inter/woff2/Inter-Bold.woff2') format('woff2');
 }
 
 @layer base {
