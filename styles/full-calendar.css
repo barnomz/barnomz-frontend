@@ -25,6 +25,23 @@
   --fc-now-indicator-color: red;
 }
 
+.fc-scroller {
+  height: auto !important;
+}
+
+.fc-head .fc-widget-header {
+  margin-right: 0 !important;
+}
+
+.fc-scroller {
+  overflow: visible !important;
+}
+
+.fc-col-header, .fc-timegrid-body , .fc-timegrid-slots > table, .fc-timegrid-cols > table {
+  min-width: 960px !important;
+  max-width: 1280px !important;
+}
+
 .fc-timegrid-event-harness-inset .fc-timegrid-event, .fc-timegrid-event.fc-event-mirror, .fc-timegrid-more-link {
   box-shadow: none !important;
 }
@@ -35,9 +52,6 @@
 
 .fc-theme-standard td:first-child, .fc-theme-standard th:first-child {
   border: none !important;
-  width: 24px !important;
-  min-width: 24px !important;
-  max-width: 24px;
 }
 
 .fc-theme-standard th:nth-child(2) {
@@ -48,4 +62,10 @@
   border-top: none !important;
 }
 
+.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame {
+  margin-top: -38px;
+}
 
+.fc .fc-scrollgrid-section-body table, .fc .fc-scrollgrid-section-footer table {
+  border-bottom-style: solid;
+}

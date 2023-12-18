@@ -1,34 +1,31 @@
 import { useState } from 'react'
 import FullCalendar from '@fullcalendar/react'
+import faLocale from '@fullcalendar/core/locales/fa'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import { DayTimeColsView } from '@fullcalendar/timegrid/internal'
 import Course from '@/components/dls/schedule/Course'
-
-let eventGuid = 0
-
-export function createEventId() {
-  return String(eventGuid++)
-}
-
-const weekDays = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه']
+import { convertPersianNumberToEnglish } from '@/utils/helpers'
+import { weekDays } from '@/constants/const'
 
 export default function SchedulePage() {
   const [courses, setCourses] = useState([
     {
-      id: createEventId(),
+      id: 1,
       code: 'CSE101',
-      title: 'مبانی کامپیوتر',
+      title: 'برنامه‌سازی وب',
       lecturer: 'محمدرضا محمدی',
-      start: '2023-12-18T12:00:00',
-      end: '2023-12-18T13:00:00',
+      daysOfWeek: [1, 3],
+      startTime: '13:30',
+      endTime: '15:00',
     },
     {
-      id: createEventId(),
+      id: 2,
       code: 'CSE102',
-      title: 'طراحی وب',
-      lecturer: 'محمد نظری',
-      start: '2023-12-20T10:00:00',
-      end: '2023-12-20T13:00:00',
+      title: 'یادگیری ماشین',
+      lecturer: 'ابولفضل مطهری',
+      daysOfWeek: [2, 4],
+      startTime: '09:00',
+      endTime: '10:30',
     },
   ])
 
@@ -46,10 +43,6 @@ export default function SchedulePage() {
     setCourses(events)
   }
 
-  const renderEventContent = (courseInfo) => {
-    return <Course courseInfo={courseInfo}></Course>
-  }
-
   return (
     <FullCalendar
       plugins={[timeGridPlugin]}
@@ -62,13 +55,13 @@ export default function SchedulePage() {
       dayMaxEvents
       weekends
       initialEvents={courses}
-      eventContent={renderEventContent}
       eventClick={handleEventClick}
       eventsSet={handleEvents}
       slotMinTime={'07:00'}
       slotMaxTime={'20:00'}
-      firstDay={6}
       direction='rtl'
+      locale={faLocale}
+      height={'700px'}
       views={{
         timeGrid: {
           component: DayTimeColsView,
@@ -78,22 +71,23 @@ export default function SchedulePage() {
           slotEventOverlap: true,
           duration: { days: 6 },
           slotLabelContent: ({ date }) => (
-            <div className='me-2 text-sm font-medium'>
-              {date.toLocaleTimeString('en-US', {
-                hour: 'numeric',
-                hour12: false,
-              })}
+            <div className='me-1 ms-2 text-sm font-medium'>
+              {convertPersianNumberToEnglish(date.getHours().toString())}
             </div>
           ),
           dayHeaderContent: ({ date }) => (
             <div className='pb-2 text-sm font-medium'>
-              {weekDays[date.getDay()]}
+              {weekDays[date.getDay() - 1]}
             </div>
           ),
-          eventContent: (courseInfo) => {
-            console.log(courseInfo)
-            return <Course courseInfo={courseInfo}></Course>
-          },
+          eventContent: (event) => (
+            <Course
+              course={{
+                title: event.event.title,
+                ...event.event.extendedProps,
+              }}
+            ></Course>
+          ),
         },
       }}
     />
