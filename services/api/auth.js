@@ -6,12 +6,12 @@ const auth = {
   login(config) {
     return dataFetcher.post(NAMESPACE + '/login/', config)
   },
-  verifyCaptcha(config) {
-    return dataFetcher.post(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${config.siteKey}&response=${config.token}`,
-    )
+  register(config) {
+    return dataFetcher.post(NAMESPACE + '/register/', config)
   },
-  // ... other methods
+  logout(config) {
+    return dataFetcher.post(NAMESPACE + '/logout/', config)
+  },
 }
 
 export default auth

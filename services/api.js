@@ -1,8 +1,9 @@
-import auth from './api/auth';
+import auth from './api/auth'
+import schedule from './api/schedule'
 
 const api = {
   auth,
-  // ... other services
-};
+  schedule,
+}
 
 export default api
