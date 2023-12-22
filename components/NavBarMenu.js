@@ -46,7 +46,7 @@ export default function NavBarMenu() {
               <Link
                 href={nav.link}
                 className={classNames(
-                  'h-full text-sm font-bold',
+                  'ripple h-full text-sm font-bold',
                   'rounded-t-md px-4 py-2 hover:bg-primary focus-visible:outline-none',
                   selected
                     ? 'border-b-4 border-solid border-secondary text-white'
