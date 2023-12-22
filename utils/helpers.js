@@ -1,4 +1,10 @@
+import { twMerge } from 'tailwind-merge'
+import { clsx } from 'clsx'
 import { persianNumbers, arabicNumbers, iPhoneNumbers } from '@/constants/const'
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs))
+}
 
 export function convertPersianNumberToEnglish(number) {
   for (let i = 0; i < 10; i++) {

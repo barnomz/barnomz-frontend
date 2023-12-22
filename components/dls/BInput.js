@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { validate } from '@/utils/validations'
-import { convertPersianNumberToEnglish } from '@/utils/helpers'
+import { cn, convertPersianNumberToEnglish } from '@/utils/helpers'
 
 const BInput = ({
   label,
@@ -56,18 +56,21 @@ const BInput = ({
     }
   }
 
-  const wrapperClasses = [
+  const wrapperClasses = cn(
     'bg-primary px-3 flex items-center gap-x-2 rounded',
     'focus-within:ring-secondary focus-within:ring-solid focus-within:ring-[1px] transition-all duration-200',
     'h-[46px] sm:h-[57px]',
-    error && '!ring-error',
+    {
+      '!ring-error': error,
+    },
     wrapperClass,
-  ].join(' ')
+    props.className,
+  )
 
   const inputClasses = [
     'grow !bg-transparent !text-transparent outline-none',
     'text-sm sm:text-base',
-    'text-grey-50 placeholder:text-grey-200 placeholder:text-right',
+    'text-grey-50 placeholder:text-grey-300 placeholder:text-right',
     'w-full h-[46px] sm:h-[57px]',
     inputClass,
   ].join(' ')
@@ -129,9 +132,11 @@ const BInput = ({
         )}
       </div>
 
-      <div className='min-h-[24px] text-xs text-error'>
-        {error && <span>{error}</span>}
-      </div>
+      {!!validations.length && (
+        <div className='min-h-[24px] text-xs text-error'>
+          {error && <span>{error}</span>}
+        </div>
+      )}
     </div>
   )
 }

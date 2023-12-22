@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
+import { cn } from '@/utils/helpers'
 
 const BLink = ({
   to,
@@ -18,17 +19,18 @@ const BLink = ({
   children,
   ...props
 }) => {
-  const classes = [
+  props.className = cn(
     'flex justify-center items-center gap-x-2',
     'text-sm font-medium outline-none transition-all duration-200 underline-offset-8',
     disabled
       ? 'text-grey-200 cursor-default pointer-events-none'
       : getColorClasses(color),
-    block ? 'w-full' : '',
-    color !== 'transparent' ? 'hover:underline' : '',
-  ].join(' ')
-
-  props.className = props.className ? props.className + ' ' + classes : classes
+    {
+      'w-full': block,
+      'hover:underline': color !== 'transparent',
+    },
+    props.className,
+  )
 
   const renderIcon = (iconName) => {
     if (!iconName) return null

@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import BLink from './BLink'
+import { cn } from '@/utils/helpers'
 
 const BBtn = ({
   to,
@@ -18,7 +19,7 @@ const BBtn = ({
   children,
   ...props
 }) => {
-  const classes = [
+  props.className = cn(
     'flex justify-center items-center gap-x-2 ripple',
     'text-sm font-medium outline-none transition-all duration-200',
     color.includes('-text')
@@ -27,10 +28,11 @@ const BBtn = ({
     disabled
       ? 'bg-grey-50 text-grey-200 cursor-default pointer-events-none'
       : getColorClasses(color),
-    block ? 'w-full' : '',
-  ].join(' ')
-
-  props.className = props.className ? props.className + ' ' + classes : classes
+    {
+      'w-full': block,
+    },
+    props.className,
+  )
 
   const renderIcon = (iconName) => {
     if (!iconName) return null
