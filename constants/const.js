@@ -133,3 +133,34 @@ export const tabs = [
     ],
   },
 ]
+
+export const examsTableHeaders = [
+  {
+    key: 'code',
+    value: 'کد',
+  },
+  {
+    key: 'title',
+    value: 'نام درس',
+  },
+  {
+    key: 'group',
+    value: 'گروه',
+  },
+  {
+    key: 'credit',
+    value: 'واحد',
+  },
+  {
+    key: 'lecturer',
+    value: 'استاد',
+  },
+  {
+    key: 'examDate',
+    value: 'زمان امتحان',
+  },
+  {
+    key: 'remove',
+    value: 'حذف',
+  },
+]

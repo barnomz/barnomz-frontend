@@ -21,7 +21,7 @@ const navigations = [
   {
     id: 3,
     title: 'امتحانات',
-    link: '/auth/register',
+    link: '/exams',
   },
   {
     id: 4,
