@@ -60,3 +60,23 @@
   }
 }
 
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 18px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #051D33;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0D3B66;
+  border-radius: 20px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #10497F;
+}
+
