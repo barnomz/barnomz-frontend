@@ -129,45 +129,47 @@ export default function CourseSelector({ mode = 'search' }) {
         onChange={(e) => setQuery(e.target.value)}
       />
 
-      {filteredCoursesGroups.map((coursesGroup, i) => (
-        <div
-          key={i}
-          className='rounded-lg bg-grey-300 text-primary-darker transition-all'
-        >
-          <Disclosure>
-            {({ open }) => (
-              <>
-                <Disclosure.Button className='flex w-full items-center justify-between rounded-lg px-4 py-2 text-sm font-medium focus:outline-none'>
-                  <span>{coursesGroup[0].title}</span>
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    className={`${
-                      open ? 'rotate-180 transform' : ''
-                    } text-purple-500 h-5 w-5 transition-all`}
-                  />
-                </Disclosure.Button>
-                {/*<AnimatePresence>*/}
-                {open && (
-                  <Disclosure.Panel
-                    // as={motion.div}
-                    // static
-                    // initial={{ height: 0, opacity: 0 }}
-                    // animate={{ height: 'auto', opacity: 1 }}
-                    // exit={{ height: 0, opacity: 0 }}
-                    // transition={{ duration: 0.1 }}
-                    className='space-y-4 px-4 pb-2 text-sm'
-                  >
-                    {coursesGroup.map((course) => (
-                      <Course key={course.id} course={course} mode={mode} />
-                    ))}
-                  </Disclosure.Panel>
-                )}
-                {/*</AnimatePresence>*/}
-              </>
-            )}
-          </Disclosure>
-        </div>
-      ))}
+      <div className='max-h-[38.5rem] space-y-4 overflow-auto'>
+        {filteredCoursesGroups.map((coursesGroup, i) => (
+          <div
+            key={i}
+            className='rounded-lg bg-grey-300 text-primary-darker transition-all'
+          >
+            <Disclosure>
+              {({ open }) => (
+                <>
+                  <Disclosure.Button className='flex w-full items-center justify-between rounded-lg px-4 py-2 text-sm font-medium focus:outline-none'>
+                    <span>{coursesGroup[0].title}</span>
+                    <FontAwesomeIcon
+                      icon={faChevronDown}
+                      className={`${
+                        open ? 'rotate-180 transform' : ''
+                      } text-purple-500 h-5 w-5 transition-all`}
+                    />
+                  </Disclosure.Button>
+                  {/*<AnimatePresence>*/}
+                  {open && (
+                    <Disclosure.Panel
+                      // as={motion.div}
+                      // static
+                      // initial={{ height: 0, opacity: 0 }}
+                      // animate={{ height: 'auto', opacity: 1 }}
+                      // exit={{ height: 0, opacity: 0 }}
+                      // transition={{ duration: 0.1 }}
+                      className='space-y-4 px-4 pb-2 text-sm'
+                    >
+                      {coursesGroup.map((course) => (
+                        <Course key={course.id} course={course} mode={mode} />
+                      ))}
+                    </Disclosure.Panel>
+                  )}
+                  {/*</AnimatePresence>*/}
+                </>
+              )}
+            </Disclosure>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
