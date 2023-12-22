@@ -17,7 +17,7 @@ export default function ScheduleTabs() {
             {({ selected }) => (
               <button
                 className={classNames(
-                  'h-full text-sm font-bold',
+                  'ripple h-full text-sm font-bold',
                   'rounded-md px-4 py-2 focus-visible:outline-none',
                   selected
                     ? 'bg-secondary/30 text-secondary ring-2 ring-secondary'
