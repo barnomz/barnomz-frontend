@@ -50,12 +50,13 @@ export const englishNumbers = [
 ]
 
 export const weekDays = [
-  'شنبه',
   'یکشنبه',
   'دوشنبه',
   'سه‌شنبه',
   'چهارشنبه',
   'پنج‌شنبه',
+  'جمعه',
+  'شنبه',
 ]
 
 export const tabs = [

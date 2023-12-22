@@ -15,3 +15,7 @@ export function convertPersianNumberToEnglish(number) {
   }
   return number
 }
+
+export function getDaysOfWeek(days) {
+  return days.map((day) => (day === 0 ? 6 : day - 1))
+}

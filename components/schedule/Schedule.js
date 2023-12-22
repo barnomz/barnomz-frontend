@@ -3,8 +3,8 @@ import FullCalendar from '@fullcalendar/react'
 import faLocale from '@fullcalendar/core/locales/fa'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import { DayTimeColsView } from '@fullcalendar/timegrid/internal'
-import Course from '@/components/dls/schedule/Course'
-import { convertPersianNumberToEnglish } from '@/utils/helpers'
+import Course from '@/components/schedule/Course'
+import { convertPersianNumberToEnglish, getDaysOfWeek } from '@/utils/helpers'
 import { weekDays } from '@/constants/const'
 
 export default function SchedulePage() {
@@ -14,7 +14,7 @@ export default function SchedulePage() {
       code: 'CSE101',
       title: 'برنامه‌سازی وب',
       lecturer: 'محمدرضا محمدی',
-      daysOfWeek: [1, 3],
+      daysOfWeek: getDaysOfWeek([1, 3]),
       startTime: '13:30',
       endTime: '15:00',
     },
@@ -23,7 +23,7 @@ export default function SchedulePage() {
       code: 'CSE102',
       title: 'یادگیری ماشین',
       lecturer: 'ابولفضل مطهری',
-      daysOfWeek: [2, 4],
+      daysOfWeek: getDaysOfWeek([0, 2]),
       startTime: '09:00',
       endTime: '10:30',
     },
@@ -50,7 +50,7 @@ export default function SchedulePage() {
       headerToolbar={false}
       editable={false}
       selectable={false}
-      selectMirror
+      selectMirror={false}
       expandRows
       dayMaxEvents
       weekends
@@ -60,7 +60,9 @@ export default function SchedulePage() {
       slotMinTime={'07:00'}
       slotMaxTime={'20:00'}
       direction='rtl'
+      initialDate={'2023-12-30'}
       locale={faLocale}
+      firstDay={2}
       height={'700px'}
       views={{
         timeGrid: {
@@ -77,7 +79,12 @@ export default function SchedulePage() {
           ),
           dayHeaderContent: ({ date }) => (
             <div className='pb-2 text-sm font-medium'>
-              {weekDays[date.getDay() - 1]}
+              {
+                weekDays[
+                  ((date.getDay() % weekDays.length) + weekDays.length) %
+                    weekDays.length
+                ]
+              }
             </div>
           ),
           eventContent: (event) => (
