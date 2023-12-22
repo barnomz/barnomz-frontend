@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
-    <Html lang='fa'>
+    <Html lang='fa' className='bg-primary-dark'>
       <Head>
         <link rel='shortcut icon' href='/images/barnomz-logo.svg' />
         <link

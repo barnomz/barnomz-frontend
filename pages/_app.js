@@ -19,7 +19,7 @@ export default function App({
     <Provider store={store}>
       <SessionProvider session={session}>
         <ToastProvider>
-          <div className='min-h-screen bg-primary-dark'>
+          <div className='min-h-screen'>
             <NavBar />
             <AnimatePresence initial={false} mode='wait'>
               <motion.div
