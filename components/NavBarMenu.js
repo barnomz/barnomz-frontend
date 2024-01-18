@@ -13,11 +13,11 @@ const navigations = [
     title: 'ساخت برنامه',
     link: '/schedule',
   },
-  {
-    id: 2,
-    title: 'جستجو برنامه',
-    link: '/auth/login',
-  },
+  // {
+  //   id: 2,
+  //   title: 'جستجو برنامه',
+  //   link: '/auth/login',
+  // },
   {
     id: 3,
     title: 'امتحانات',
