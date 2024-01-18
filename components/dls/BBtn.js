@@ -92,7 +92,7 @@ const colorClasses = {
 }
 
 const getColorClasses = (color) => {
-  return colorClasses[color] || ''
+  return colorClasses[color] || 'hover:bg-white/10'
 }
 
 export default BBtn
