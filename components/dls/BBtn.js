@@ -83,7 +83,7 @@ const colorClasses = {
   primary: 'bg-primary text-grey-50 hover:bg-primary-light',
   'primary-light': 'bg-primary-light text-grey-50 hover:bg-primary-lighter',
   'secondary-text': 'text-secondary-dark hover:border-secondary-dark',
-  secondary: 'bg-secondary-dark text-white hover:bg-secondary',
+  secondary: 'bg-secondary-dark text-grey-900 hover:bg-secondary',
   success:
     'bg-success-600 text-white hover:bg-success-700 active:bg-success-800',
   error: 'bg-error-600 text-white hover:bg-error-700 active:bg-error-800',
