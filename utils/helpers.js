@@ -7,12 +7,11 @@ export function cn(...inputs) {
 }
 
 export function convertPersianNumberToEnglish(number) {
-  for (let i = 0; i < 10; i++) {
-    number = number
-      .replace(persianNumbers[i], i)
-      .replace(arabicNumbers[i], i)
-      .replace(iPhoneNumbers[i], i)
-  }
+  Array.from(Array(10).keys()).forEach((_, i) => {
+    const numbers = [persianNumbers[i], arabicNumbers[i], iPhoneNumbers[i]]
+    const regexp = new RegExp(numbers.join('|'), 'g')
+    number = number.replace(regexp, i)
+  })
   return number
 }
 
