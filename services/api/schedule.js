@@ -1,6 +1,6 @@
 import dataFetcher from '@/services/dataFetcher'
 
-const NAMESPACE = '/schedule'
+const NAMESPACE = '/schedules'
 
 const schedule = {
   fetchSchedules(config) {
