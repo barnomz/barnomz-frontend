@@ -25,7 +25,7 @@ const navigations = [
   },
   {
     id: 4,
-    title: 'استاتید',
+    title: 'اساتید',
     link: '/lecturers',
   },
 ]
