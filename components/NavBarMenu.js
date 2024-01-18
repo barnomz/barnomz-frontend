@@ -25,7 +25,7 @@ const navigations = [
   },
   {
     id: 4,
-    title: 'نمره‌دهی به استاتید',
+    title: 'استاتید',
     link: '/lecturers',
   },
 ]
