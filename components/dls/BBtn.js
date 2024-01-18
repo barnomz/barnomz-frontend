@@ -78,29 +78,21 @@ const BBtn = ({
   )
 }
 
+const colorClasses = {
+  'primary-text': 'text-primary-dark hover:border-primary-dark',
+  primary: 'bg-primary text-grey-50 hover:bg-primary-light',
+  'primary-light': 'bg-primary-light text-grey-50 hover:bg-primary-lighter',
+  'secondary-text': 'text-secondary-dark hover:border-secondary-dark',
+  secondary: 'bg-secondary-dark text-white hover:bg-secondary',
+  success:
+    'bg-success-600 text-white hover:bg-success-700 active:bg-success-800',
+  error: 'bg-error-600 text-white hover:bg-error-700 active:bg-error-800',
+  'grey-text': 'text-grey-50 hover:border-grey-100',
+  grey: 'bg-grey-50 text-grey-800 hover:bg-grey-200 active:bg-grey-300',
+}
+
 const getColorClasses = (color) => {
-  switch (color) {
-    case 'primary-text':
-      return 'text-primary-dark hover:border-primary-dark'
-    case 'primary':
-      return 'bg-primary text-grey-50 hover:bg-primary-light'
-    case 'primary-light':
-      return 'bg-primary-light text-grey-50 hover:bg-primary-lighter'
-    case 'secondary-text':
-      return 'text-secondary-dark hover:border-secondary-dark'
-    case 'secondary':
-      return 'bg-secondary-dark text-white hover:bg-secondary'
-    case 'success':
-      return 'bg-success-600 text-white hover:bg-success-700 active:bg-success-800'
-    case 'error':
-      return 'bg-error-600 text-white hover:bg-error-700 active:bg-error-800'
-    case 'grey-text':
-      return 'text-grey-50 hover:border-grey-100'
-    case 'grey':
-      return 'bg-grey-50 text-grey-800 hover:bg-grey-200 active:bg-grey-300'
-    default:
-      return ''
-  }
+  return colorClasses[color] || ''
 }
 
 export default BBtn
