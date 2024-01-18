@@ -15,6 +15,13 @@ export function convertPersianNumberToEnglish(number) {
   return number
 }
 
+export function convertEnglishNumberToPersian(number) {
+  return String(number).replace(
+    /\d/g,
+    (digit) => persianNumbers[parseInt(digit)],
+  )
+}
+
 export function getDaysOfWeek(days) {
   return days.map((day) => (day === 0 ? 6 : day - 1))
 }
