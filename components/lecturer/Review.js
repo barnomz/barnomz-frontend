@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShareNodes, faUser } from '@fortawesome/free-solid-svg-icons'
-import BBtn from '@/components/dls/BBtn'
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import BBtn from '@/components/dls/BBtn'
 
 export default function Review({ review }) {
   return (
