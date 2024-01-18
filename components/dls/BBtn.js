@@ -19,6 +19,19 @@ const BBtn = ({
   children,
   ...props
 }) => {
+  const renderIcon = (iconName) => {
+    return (
+      iconName && (
+        <FontAwesomeIcon
+          icon={iconName}
+          spin={loading}
+          size={iconSize}
+          className={iconClass}
+        />
+      )
+    )
+  }
+
   props.className = cn(
     'flex justify-center items-center gap-x-2 ripple',
     'text-sm font-medium outline-none transition-all duration-200',
@@ -33,18 +46,6 @@ const BBtn = ({
     },
     props.className,
   )
-
-  const renderIcon = (iconName) => {
-    if (!iconName) return null
-    return (
-      <FontAwesomeIcon
-        icon={iconName}
-        spin={loading}
-        size={iconSize}
-        className={iconClass}
-      />
-    )
-  }
 
   if (to) {
     return (
