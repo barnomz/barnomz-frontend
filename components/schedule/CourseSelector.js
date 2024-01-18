@@ -3,7 +3,6 @@ import BInput from '@/components/dls/BInput'
 import { faChevronDown, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Disclosure } from '@headlessui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { AnimatePresence, motion } from 'framer-motion'
 import { getDaysOfWeek } from '@/utils/helpers'
 import { useState } from 'react'
 import Course from '@/components/schedule/Course'
@@ -147,23 +146,13 @@ export default function CourseSelector({ mode = 'search' }) {
                       } text-purple-500 h-5 w-5 transition-all`}
                     />
                   </Disclosure.Button>
-                  {/*<AnimatePresence>*/}
                   {open && (
-                    <Disclosure.Panel
-                      // as={motion.div}
-                      // static
-                      // initial={{ height: 0, opacity: 0 }}
-                      // animate={{ height: 'auto', opacity: 1 }}
-                      // exit={{ height: 0, opacity: 0 }}
-                      // transition={{ duration: 0.1 }}
-                      className='space-y-4 px-4 pb-2 text-sm'
-                    >
+                    <Disclosure.Panel className='space-y-4 px-4 pb-2 text-sm'>
                       {coursesGroup.map((course) => (
                         <Course key={course.id} course={course} mode={mode} />
                       ))}
                     </Disclosure.Panel>
                   )}
-                  {/*</AnimatePresence>*/}
                 </>
               )}
             </Disclosure>
