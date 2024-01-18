@@ -80,3 +80,7 @@
   background-color: #10497F;
 }
 
+.custom-gradient {
+  background: linear-gradient(270deg, rgba(20, 89, 154, 0.50) 0%, rgba(20, 89, 154, 0.00) 97.97%);
+}
+
