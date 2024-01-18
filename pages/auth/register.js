@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getSession, signIn } from 'next-auth/react'
+import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import BForm from '@/components/dls/BForm'
 import BInput from '@/components/dls/BInput'
@@ -17,6 +17,7 @@ import {
 } from '@/utils/validations'
 import BToast from '@/components/dls/toast/BToast'
 import { useToast } from '@/components/dls/toast/ToastService'
+import api from '@/services/api'
 
 export default function Register() {
   const [credentials, setCredentials] = useState({
@@ -41,12 +42,7 @@ export default function Register() {
 
     toast.open(successToast)
 
-    const result = await signIn('credentials', {
-      redirect: false,
-      username: credentials.username,
-      password: credentials.password,
-      confirmPassword: credentials.confirmPassword,
-    })
+    const result = await api.auth.register()
 
     if (result.ok && result.url) {
       await router.replace(result.url)
