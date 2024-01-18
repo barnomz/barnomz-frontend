@@ -34,7 +34,7 @@ export default function NavBarMenu() {
   const router = useRouter()
 
   const [activeNavIndex] = useState(
-    navigations.findIndex((nav) => nav.link === router.asPath),
+    navigations.findIndex((nav) => router.asPath.startsWith(nav.link)),
   )
 
   return (
