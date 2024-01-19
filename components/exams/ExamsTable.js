@@ -72,7 +72,7 @@ export default function ExamsTable() {
                   ) : (
                     <BBtn
                       icon={faTimes}
-                      className='h-6 w-6 rounded-full bg-error !px-2 hover:bg-error-500'
+                      className='h-6 w-6 rounded-full bg-grey-200 !px-2 hover:bg-error-500'
                     />
                   )}
                 </td>
