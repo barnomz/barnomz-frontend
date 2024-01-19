@@ -3,7 +3,7 @@ import dataFetcher from '@/services/dataFetcher'
 const NAMESPACE = '/lecturers/'
 
 const schedule = {
-  fetchLecturers(config) {
+  fetchAllLecturers(config) {
     return dataFetcher.get(NAMESPACE, config)
   },
   fetchLecturer(config) {
