@@ -11,6 +11,17 @@ const BForm = ({ onSubmit, children }) => {
     }, 10)
   }, [])
 
+  const validateAll = (showError = true) => {
+    return new Promise((resolve) => {
+      const results = Array.from(inputElements).map((inputEl) =>
+        inputEl.validate({ target: { value: inputEl.value } }, showError),
+      )
+      setTimeout(() => {
+        resolve(results.every((result) => result.status))
+      }, 0)
+    })
+  }
+
   useEffect(() => {
     validateAll(false)
   }, [inputElements])
@@ -22,17 +33,6 @@ const BForm = ({ onSubmit, children }) => {
         onSubmit(isFormValid)
       })
     }
-  }
-
-  const validateAll = (showError = true) => {
-    return new Promise((resolve) => {
-      const results = Array.from(inputElements).map((inputEl) =>
-        inputEl.validate({ target: { value: inputEl.value } }, showError),
-      )
-      setTimeout(() => {
-        resolve(results.every((result) => result.status))
-      }, 0)
-    })
   }
 
   return (
