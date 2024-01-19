@@ -1,4 +1,6 @@
 import { cn, convertEnglishNumberToPersian } from '@/utils/helpers'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function LecturerInfo({ lecturer }) {
   const info = [
@@ -21,6 +23,13 @@ export default function LecturerInfo({ lecturer }) {
   return (
     <div className='min-w-[20rem] max-w-[20rem] space-y-4 rounded-xl bg-primary/50 p-4 backdrop-blur'>
       <h4 className='text-2xl font-bold text-white'>نمره‌دهی به اساتید</h4>
+      <div className='flex justify-center'>
+        <FontAwesomeIcon
+          icon={faUser}
+          size='10x'
+          className='rounded-xl bg-primary p-6 pb-0 text-grey-300 shadow-lg'
+        />
+      </div>
       <div className='flex flex-col gap-2 rounded-lg border-[1px] border-solid border-primary-light p-3'>
         {info.map((item) => (
           <div key={item.key} className='flex items-center justify-between'>
