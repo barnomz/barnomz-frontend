@@ -52,7 +52,7 @@ const BInput = ({
     if (autofocus && id) {
       inputEl?.focus()
     }
-  }, [autofocus, id, validations, handleValidation])
+  }, [autofocus, id, validations])
 
   const onChangeWrapper = (event) => {
     setModel(convertPersianNumberToEnglish(event.target.value))
