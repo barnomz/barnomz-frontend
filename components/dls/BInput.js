@@ -22,11 +22,12 @@ const BInput = ({
   autocomplete,
   validations = [],
   onChange,
+  value,
   ...props
 }) => {
   const [id, setId] = useState(null)
   const [error, setError] = useState(null)
-  const [model, setModel] = useState('')
+  const [model, setModel] = useState(value || '')
 
   useEffect(() => {
     setId(String(Math.floor(Math.random() * 99999999)))
@@ -40,6 +41,10 @@ const BInput = ({
     showError && setError(result.error)
     return result
   }
+
+  useEffect(() => {
+    if (value !== model) setModel(value)
+  }, [value])
 
   useEffect(() => {
     const inputEl = document.getElementById(`input-${id}`)

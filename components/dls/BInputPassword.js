@@ -20,6 +20,7 @@ const BInputPassword = ({
   autocomplete,
   validations = [],
   onChange,
+  value,
   ...props
 }) => {
   const [show, setShow] = useState(false)
@@ -62,6 +63,7 @@ const BInputPassword = ({
       autocomplete={autocomplete}
       validations={validations}
       onChange={onChange}
+      value={value}
       {...props}
     />
   )
