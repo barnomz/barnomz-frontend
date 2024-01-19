@@ -5,7 +5,7 @@ import BBtn from '@/components/dls/BBtn'
 import { faSquarePlus } from '@fortawesome/free-regular-svg-icons'
 import Review from '@/components/lecturer/Review'
 
-export default function Lecturers({ lecturer, reviews }) {
+export default function LecturerPage({ lecturer, reviews }) {
   return (
     <>
       <Head>
