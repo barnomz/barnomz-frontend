@@ -121,6 +121,7 @@ export default function CourseSelector({ mode = 'search' }) {
 
       <CollegeCombobox colleges={colleges} />
       <BInput
+        value={query}
         icon={faSearch}
         placeholder='درس مورد نظر را جستجو کنید.'
         dir='rtl'
