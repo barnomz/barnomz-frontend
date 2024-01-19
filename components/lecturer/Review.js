@@ -25,7 +25,7 @@ export default function Review({ review }) {
         <div className='flex items-center gap-2'>
           <BBtn
             postIcon={faThumbsUp}
-            color=''
+            color='ghost'
             iconSize='lg'
             className='rounded-lg px-3 text-success'
           >
@@ -33,7 +33,7 @@ export default function Review({ review }) {
           </BBtn>
           <BBtn
             postIcon={faThumbsDown}
-            color=''
+            color='ghost'
             iconSize='lg'
             className='rounded-lg px-3 text-error'
           >

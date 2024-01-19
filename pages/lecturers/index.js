@@ -27,7 +27,7 @@ export default function LecturersPage({ lecturers }) {
 
   const clearIcon = (
     <BBtn
-      color=''
+      color='ghost'
       icon={faCircleXmark}
       className='hover:bg-transparent rounded-full !p-0 text-grey-200 hover:text-error'
       iconSize='xl'

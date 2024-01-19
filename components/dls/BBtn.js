@@ -89,10 +89,11 @@ const colorClasses = {
   error: 'bg-error-600 text-white hover:bg-error-700 active:bg-error-800',
   'grey-text': 'text-grey-50 hover:border-grey-100',
   grey: 'bg-grey-50 text-grey-800 hover:bg-grey-200 active:bg-grey-300',
+  ghost: 'hover:bg-white/10',
 }
 
 const getColorClasses = (color) => {
-  return colorClasses[color] || 'hover:bg-white/10'
+  return colorClasses[color] || ''
 }
 
 export default BBtn
