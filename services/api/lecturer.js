@@ -1,6 +1,6 @@
 import dataFetcher from '@/services/dataFetcher'
 
-const NAMESPACE = '/schedules/'
+const NAMESPACE = '/lecturers/'
 
 const schedule = {
   fetchLecturer(config) {
