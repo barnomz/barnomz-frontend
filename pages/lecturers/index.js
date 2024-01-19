@@ -47,7 +47,7 @@ export default function LecturersPage({ lecturers }) {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <div className='flex flex-col divide-y divide-primary-light overflow-y-auto overflow-x-hidden'>
-          <AnimatePresence initial={false} mode='wait'>
+          <AnimatePresence initial={false}>
             {filteredLecturers.map((lecturer) => (
               <motion.div
                 key={lecturer.id}
