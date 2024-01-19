@@ -3,7 +3,7 @@ import ScheduleTabs from '@/components/schedule/ScheduleTabs'
 import Head from 'next/head'
 import CourseSelector from '@/components/schedule/CourseSelector'
 
-export default function SchedulePage() {
+export default function SchedulesPage() {
   return (
     <>
       <Head>

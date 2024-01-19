@@ -11,7 +11,7 @@ const navigations = [
   {
     id: 1,
     title: 'برنومز',
-    link: '/schedule',
+    link: '/schedules',
   },
   // {
   //   id: 2,
