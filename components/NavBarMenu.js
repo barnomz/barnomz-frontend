@@ -10,7 +10,7 @@ function classNames(...classes) {
 const navigations = [
   {
     id: 1,
-    title: 'ساخت برنامه',
+    title: 'برنومز',
     link: '/schedule',
   },
   // {
