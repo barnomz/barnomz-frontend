@@ -24,6 +24,7 @@ export default function Register() {
     username: '',
     password: '',
     confirmPassword: '',
+    studentNumber: '',
   })
   const router = useRouter()
   const toast = useToast()
@@ -61,6 +62,14 @@ export default function Register() {
     {
       rule: lengthIsGreaterOrEqualThan(5),
       message: 'نام کاربری باید حداقل ۵ کاراکتر باشد.',
+    },
+  ]
+
+  const studentNumberValidations = [
+    { rule: hasValue, message: 'وارد کردن شماره دانشجویی الزامی است.' },
+    {
+      rule: lengthIsGreaterOrEqualThan(8),
+      message: 'شماره دانشجویی باید حداقل ۸ کاراکتر باشد.',
     },
   ]
 
@@ -103,6 +112,13 @@ export default function Register() {
               placeholder='نام کاربری خود را وارد نمایید'
               validations={usernameValidations}
               onChange={updateField('username')}
+            />
+            <BInput
+              required
+              label='شماره دانشجویی'
+              placeholder='شماره دانشجویی خود را وارد نمایید'
+              validations={studentNumberValidations}
+              onChange={updateField('studentNumber')}
             />
             <BInputPassword
               required
