@@ -15,9 +15,9 @@ const iconMap = {
 }
 
 const colorMap = {
-  success: '!bg-success-700 !text-white',
-  error: '!bg-error-700 !text-white',
-  warning: '!bg-orange-700 !text-white',
+  success: 'bg-secondary-dark !text-black',
+  error: 'bg-error-600 !text-white',
+  warning: 'bg-warning-600 !text-white',
 }
 
 const BToast = ({ type, message }) => {
@@ -37,7 +37,10 @@ const BToast = ({ type, message }) => {
       </div>
       <button
         type='button'
-        className='flex h-8 w-8 items-center justify-center rounded-lg p-1.5 text-grey-100 transition-all duration-200 hover:bg-grey-200 hover:bg-white/20 hover:text-white'
+        className={cn(
+          'flex h-8 w-8 items-center justify-center rounded-lg p-1.5 transition-all duration-200 hover:bg-white/20',
+          colorMap[type],
+        )}
         aria-label='Close'
       >
         <FontAwesomeIcon icon={faTimes} className='h-3 w-3' />
