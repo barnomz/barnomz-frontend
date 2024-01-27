@@ -2,7 +2,7 @@ import dataFetcher from '@/services/dataFetcher'
 
 const NAMESPACE = '/lecturers/'
 
-const schedule = {
+const lecturer = {
   fetchAllLecturers(config) {
     return dataFetcher.get(NAMESPACE + '/', config)
   },
@@ -23,4 +23,4 @@ const schedule = {
   },
 }
 
-export default schedule
+export default lecturer
