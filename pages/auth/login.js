@@ -17,17 +17,20 @@ import {
 } from '@/utils/validations'
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false)
   const [credentials, setCredentials] = useState({ username: '', password: '' })
   const router = useRouter()
 
   const handleLogin = async (isFormValid) => {
     if (!isFormValid) return
 
+    setIsLoading(true)
     const result = await signIn('credentials', {
       redirect: false,
       username: credentials.username,
       password: credentials.password,
     })
+    setIsLoading(false)
 
     if (result.ok && result.url) {
       await router.replace(result.url)
@@ -82,7 +85,7 @@ export default function Login() {
               validations={passwordValidations}
               onChange={updateField('password')}
             />
-            <BBtn type='submit' className='mb-4' block>
+            <BBtn type='submit' className='mb-4' block loading={isLoading}>
               ورود
             </BBtn>
             <BLink
