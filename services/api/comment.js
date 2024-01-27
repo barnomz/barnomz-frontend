@@ -1,8 +1,8 @@
 import dataFetcher from '@/services/dataFetcher'
 
-const NAMESPACE = '/comments/'
+const NAMESPACE = '/comment/'
 
-const comments = {
+const comment = {
   likeComment(config) {
     return dataFetcher.post(NAMESPACE + config.commentId + '/like/', config)
   },
@@ -11,4 +11,4 @@ const comments = {
   },
 }
 
-export default comments
+export default comment
