@@ -13,10 +13,13 @@ const schedule = {
     return dataFetcher.delete(NAMESPACE + '/', config)
   },
   addCourse(config) {
-    return dataFetcher.post(NAMESPACE + '/course/', config)
+    return dataFetcher.post(NAMESPACE + config.scheduleId + '/course/', config)
   },
   deleteCourse(config) {
-    return dataFetcher.delete(NAMESPACE + '/course/', config)
+    return dataFetcher.delete(
+      NAMESPACE + config.scheduleId + '/course/',
+      config,
+    )
   },
 }
 
