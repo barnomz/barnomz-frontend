@@ -1,5 +1,5 @@
 import ToastContext from '@/components/dls/toast/ToastService'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 export default function ToastProvider({ children }) {
@@ -7,11 +7,14 @@ export default function ToastProvider({ children }) {
 
   const open = (component) => {
     const id = Date.now()
-    setToasts([...toasts, { id, component }])
+    setToasts((prevState) => [...prevState, { id, component }])
+    setTimeout(() => {
+      close(id)
+    }, 5000)
   }
 
   const close = (id) => {
-    setToasts(toasts.filter((toast) => toast.id !== id))
+    setToasts((prevState) => prevState.filter((toast) => toast.id !== id))
   }
 
   return (
