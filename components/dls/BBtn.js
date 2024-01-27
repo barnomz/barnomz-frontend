@@ -12,7 +12,7 @@ const BBtn = ({
   preIcon,
   icon,
   iconClass,
-  iconSize = 'sm',
+  iconSize = 'lg',
   postIcon,
   color = 'secondary',
   onClick,
