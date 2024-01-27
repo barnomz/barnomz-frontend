@@ -1,8 +1,8 @@
 import dataFetcher from '@/services/dataFetcher'
 
-const NAMESPACE = '/departments'
+const NAMESPACE = '/department'
 
-const departments = {
+const department = {
   fetchColleges(config) {
     return dataFetcher.get(NAMESPACE + '/', config)
   },
@@ -11,4 +11,4 @@ const departments = {
   },
 }
 
-export default departments
+export default department
