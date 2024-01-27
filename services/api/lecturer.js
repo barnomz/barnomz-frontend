@@ -4,7 +4,7 @@ const NAMESPACE = '/lecturers/'
 
 const schedule = {
   fetchAllLecturers(config) {
-    return dataFetcher.get(NAMESPACE, config)
+    return dataFetcher.get(NAMESPACE + '/', config)
   },
   fetchLecturer(config) {
     return dataFetcher.get(NAMESPACE + config.lecturerId + '/', config)
