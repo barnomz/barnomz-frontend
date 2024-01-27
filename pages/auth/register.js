@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getSession } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import BForm from '@/components/dls/BForm'
 import BInput from '@/components/dls/BInput'
@@ -18,8 +18,10 @@ import {
 import BToast from '@/components/dls/toast/BToast'
 import { useToast } from '@/components/dls/toast/ToastService'
 import api from '@/services/api'
+import messages from '@/constants/messages'
 
 export default function Register() {
+  const [isLoading, setIsLoading] = useState(false)
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
@@ -29,25 +31,47 @@ export default function Register() {
   const router = useRouter()
   const toast = useToast()
   const successToast = (
-    <BToast type='success' message='ثبت‌نام شما موفقیت‌آمیز بود.' />
+    <BToast type='success' message={messages.REGISTER_SUCCESS} />
   )
-  const errorToast = (
-    <BToast type='error' message='فیلدها را به درستی مقداردهی کنید' />
-  )
+  const errorToast = (message) => <BToast type='error' message={message} />
 
   const handleRegister = async (isFormValid) => {
     if (!isFormValid) {
-      toast.open(errorToast)
+      toast.open(errorToast(messages.FORM_INVALID))
       return
     }
 
-    toast.open(successToast)
-
-    const result = await api.auth.register()
-
-    if (result.ok && result.url) {
-      await router.replace(result.url)
+    setIsLoading(true)
+    const data = {
+      username: credentials.username,
+      student_number: credentials.studentNumber,
+      password1: credentials.password,
+      password2: credentials.confirmPassword,
     }
+    await api.auth
+      .register({
+        data,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(async () => {
+        const result = await signIn('credentials', {
+          redirect: false,
+          username: credentials.username,
+          password: credentials.password,
+        })
+        if (result.ok) {
+          toast.open(successToast)
+          await router.replace('/schedules')
+        }
+      })
+      .catch((err) => {
+        toast.open(
+          errorToast(err.response?.data?.message || messages.ERROR_OCCURRED),
+        )
+      })
+    setIsLoading(false)
   }
 
   const updateField = (field) => (event) => {
@@ -134,7 +158,7 @@ export default function Register() {
               validations={confirmPasswordValidations}
               onChange={updateField('confirmPassword')}
             />
-            <BBtn type='submit' className='mb-4' block>
+            <BBtn type='submit' className='mb-4' block loading={isLoading}>
               ثبت‌نام
             </BBtn>
             <BLink
