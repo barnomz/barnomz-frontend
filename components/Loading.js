@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
+import { cn } from '@/utils/helpers'
 
 const loadingContainer = {
   width: '4rem',
@@ -30,30 +31,28 @@ const loadingContainerVariants = {
 
 const loadingCircleVariants = {
   start: {
-    y: '0%',
-  },
-  end: {
-    y: '60%',
+    y: [0, -6, 0],
   },
 }
 
 const loadingCircleTransition = {
-  duration: 0.4,
-  yoyo: Infinity,
+  duration: 0.5,
+  repeat: Infinity,
+  repeatType: 'reverse',
+  repeatDelay: 1,
   ease: 'easeInOut',
 }
 
-export default function Loading() {
+export default function Loading({ className }) {
   return (
-    <div className='z-50 h-full w-full'>
-      <div className='flex h-full w-full items-center justify-center'>
+    <div className={cn('z-50 h-full w-full', className)}>
+      <div className='my-4 flex h-full w-full items-center justify-center'>
         <AnimatePresence>
           <motion.div
             style={loadingContainer}
             variants={loadingContainerVariants}
             transition={loadingCircleTransition}
-            initial='start'
-            animate='end'
+            animate='start'
           >
             {Array.from({ length: 3 }, (_, i) => (
               <motion.span
