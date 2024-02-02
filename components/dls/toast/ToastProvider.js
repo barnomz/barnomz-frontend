@@ -1,11 +1,13 @@
 import ToastContext from '@/components/dls/toast/ToastService'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import BToast from '@/components/dls/toast/BToast'
 
 export default function ToastProvider({ children }) {
   const [toasts, setToasts] = useState([])
 
-  const open = (component) => {
+  const open = (arg) => {
+    const component = <BToast message={arg.message} type={arg.type} />
     const id = Date.now()
     setToasts((prevState) => [...prevState, { id, component }])
     setTimeout(() => {

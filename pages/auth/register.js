@@ -30,14 +30,10 @@ export default function Register() {
   })
   const router = useRouter()
   const toast = useToast()
-  const successToast = (
-    <BToast type='success' message={messages.REGISTER_SUCCESS} />
-  )
-  const errorToast = (message) => <BToast type='error' message={message} />
 
   const handleRegister = async (isFormValid) => {
     if (!isFormValid) {
-      toast.open(errorToast(messages.FORM_INVALID))
+      toast.open({ message: messages.FORM_INVALID, type: 'error' })
       return
     }
 
@@ -45,8 +41,7 @@ export default function Register() {
     const data = {
       username: credentials.username,
       student_number: credentials.studentNumber,
-      password1: credentials.password,
-      password2: credentials.confirmPassword,
+      password: credentials.password,
     }
     await api.auth
       .register({
@@ -62,14 +57,13 @@ export default function Register() {
           password: credentials.password,
         })
         if (result.ok) {
-          toast.open(successToast)
+          toast.open({ message: messages.REGISTER_SUCCESS, type: 'success' })
           await router.replace('/schedules')
         }
       })
       .catch((err) => {
-        toast.open(
-          errorToast(err.response?.data?.message || messages.ERROR_OCCURRED),
-        )
+        const message = err.response?.data?.message || messages.ERROR_OCCURRED
+        toast.open({ message, type: 'error' })
       })
     setIsLoading(false)
   }
@@ -183,7 +177,7 @@ export async function getServerSideProps(context) {
   if (session) {
     return {
       redirect: {
-        destination: '/home',
+        destination: '/schedules',
         permanent: false,
       },
     }

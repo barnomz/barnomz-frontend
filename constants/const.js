@@ -1,3 +1,5 @@
+import { getDaysOfWeek } from '@/utils/helpers'
+
 export const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹']
 
 export const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩']
@@ -14,88 +16,13 @@ export const weekDays = [
   'شنبه',
 ]
 
-export const tabs = [
-  {
-    id: 1,
-    title: 'برنامه ۱',
-    courses: [
-      {
-        id: 1,
-        code: 'CSE101',
-        title: 'برنامه‌سازی وب',
-        lecturer: 'محمدرضا محمدی',
-        daysOfWeek: [1, 3],
-        startTime: '13:30',
-        endTime: '15:00',
-      },
-      {
-        id: 2,
-        code: 'CSE102',
-        title: 'یادگیری ماشین',
-        lecturer: 'ابولفضل مطهری',
-        daysOfWeek: [2, 4],
-        startTime: '09:00',
-        endTime: '10:30',
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: 'برنامه ۲',
-    courses: [
-      {
-        id: 1,
-        code: 'CSE101',
-        title: 'برنامه‌سازی وب',
-        lecturer: 'محمدرضا محمدی',
-        daysOfWeek: [1, 3],
-        startTime: '13:30',
-        endTime: '15:00',
-      },
-      {
-        id: 2,
-        code: 'CSE102',
-        title: 'یادگیری ماشین',
-        lecturer: 'ابولفضل مطهری',
-        daysOfWeek: [2, 4],
-        startTime: '09:00',
-        endTime: '10:30',
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: 'برنامه ۳',
-    courses: [
-      {
-        id: 1,
-        code: 'CSE101',
-        title: 'برنامه‌سازی وب',
-        lecturer: 'محمدرضا محمدی',
-        daysOfWeek: [1, 3],
-        startTime: '13:30',
-        endTime: '15:00',
-      },
-      {
-        id: 2,
-        code: 'CSE102',
-        title: 'یادگیری ماشین',
-        lecturer: 'ابولفضل مطهری',
-        daysOfWeek: [2, 4],
-        startTime: '09:00',
-        endTime: '10:30',
-      },
-    ],
-  },
-]
-
 export const examsTableHeaders = [
   {
-    key: 'code',
+    key: 'course_code',
     value: 'کد',
   },
   {
-    key: 'title',
+    key: 'course_name',
     value: 'نام درس',
   },
   {
@@ -107,7 +34,7 @@ export const examsTableHeaders = [
     value: 'واحد',
   },
   {
-    key: 'lecturer',
+    key: 'presented_by',
     value: 'استاد',
   },
   {
@@ -117,5 +44,135 @@ export const examsTableHeaders = [
   {
     key: 'remove',
     value: 'حذف',
+  },
+]
+
+export const coursesMockData = [
+  {
+    id: 1,
+    course_code: 'CSE101',
+    course_name: 'برنامه‌سازی وب',
+    presented_by: 'محمدرضا محمدی',
+    daysOfWeek: getDaysOfWeek([1, 3]),
+    startTime: '13:30',
+    endTime: '15:00',
+    group: 1,
+    credit: '3',
+  },
+  {
+    id: 2,
+    course_code: 'CSE102',
+    course_name: 'یادگیری ماشین',
+    presented_by: 'ابولفضل مطهری',
+    daysOfWeek: getDaysOfWeek([0, 2]),
+    startTime: '09:00',
+    endTime: '10:30',
+    group: 1,
+    credit: '3',
+  },
+  {
+    id: 3,
+    course_code: 'CSE103',
+    course_name: 'طراحی پایگاه داده‌ها',
+    presented_by: 'مهدی آخی',
+    daysOfWeek: getDaysOfWeek([0, 2]),
+    startTime: '13:30',
+    endTime: '15:00',
+    group: 1,
+    credit: '3',
+  },
+  {
+    id: 4,
+    course_code: 'CSE104',
+    course_name: 'مهندسی نرم‌اقزار',
+    presented_by: 'ریواده',
+    daysOfWeek: getDaysOfWeek([1, 3]),
+    startTime: '09:00',
+    endTime: '10:30',
+    group: 1,
+    credit: '3',
+  },
+  {
+    id: 5,
+    course_code: 'CSE103-1',
+    course_name: 'طراحی پایگاه داده‌ها',
+    presented_by: 'محمدرضا محمدی',
+    daysOfWeek: getDaysOfWeek([1, 3]),
+    startTime: '13:30',
+    endTime: '15:00',
+    group: 1,
+    credit: '3',
+  },
+  {
+    id: 6,
+    course_code: 'CSE103-2',
+    course_name: 'طراحی پایگاه داده‌ها',
+    presented_by: 'ابولفضل مطهری',
+    daysOfWeek: getDaysOfWeek([0, 2]),
+    startTime: '09:00',
+    endTime: '10:30',
+    group: 2,
+    credit: '3',
+  },
+]
+
+export const schedules = [
+  {
+    id: 1,
+    courses: [
+      {
+        id: 1,
+        course_code: 'CSE101',
+        course_name: 'برنامه‌سازی وب',
+        presented_by: 'محمدرضا محمدی',
+        daysOfWeek: getDaysOfWeek([1, 3]),
+        startTime: '13:30',
+        endTime: '15:00',
+        group: 1,
+        examDate: '2023-12-23T13:00',
+        credit: '3',
+      },
+      {
+        id: 2,
+        course_code: 'CSE102',
+        course_name: 'یادگیری ماشین',
+        presented_by: 'ابولفضل مطهری',
+        daysOfWeek: getDaysOfWeek([0, 2]),
+        startTime: '09:00',
+        endTime: '10:30',
+        group: 1,
+        examDate: '2023-12-23T13:00',
+        credit: '3',
+      },
+    ],
+  },
+  {
+    id: 2,
+    courses: [
+      {
+        id: 3,
+        course_code: 'CSE103',
+        course_name: 'طراحی پایگاه داده‌ها',
+        presented_by: 'مهدی آخی',
+        daysOfWeek: getDaysOfWeek([0, 2]),
+        startTime: '13:30',
+        endTime: '15:00',
+        group: 1,
+        examDate: '2023-12-23T13:00',
+        credit: '3',
+      },
+      {
+        id: 4,
+        course_code: 'CSE104',
+        course_name: 'مهندسی نرم‌اقزار',
+        presented_by: 'ریواده',
+        daysOfWeek: getDaysOfWeek([1, 3]),
+        startTime: '09:00',
+        endTime: '10:30',
+        group: 1,
+        examDate: '2023-12-23T13:00',
+        credit: '3',
+      },
+    ],
   },
 ]

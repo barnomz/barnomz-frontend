@@ -15,7 +15,7 @@ const schedule = {
   addCourseToSchedule(config) {
     return dataFetcher.post(NAMESPACE + config.scheduleId + '/course/', config)
   },
-  deleteCourse(config) {
+  deleteCourseFromSchedule(config) {
     return dataFetcher.delete(
       NAMESPACE + config.scheduleId + '/course/',
       config,

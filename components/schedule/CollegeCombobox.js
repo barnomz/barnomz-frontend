@@ -3,7 +3,7 @@ import { Combobox, Transition } from '@headlessui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons'
 
-export default function CollegeCombobox({ colleges }) {
+export default function CollegeCombobox({ colleges, onSelect }) {
   const [selected, setSelected] = useState(null)
   const [query, setQuery] = useState('')
 
@@ -12,9 +12,14 @@ export default function CollegeCombobox({ colleges }) {
       ? colleges
       : colleges.filter((college) => college.name.match(query))
 
+  const handleSelect = (college) => {
+    setSelected(college)
+    onSelect(college.id)
+  }
+
   return (
     <div className=''>
-      <Combobox value={selected} onChange={setSelected}>
+      <Combobox value={selected} onChange={handleSelect}>
         <div className='relative mt-1'>
           <div className='relative w-full cursor-default overflow-hidden rounded bg-primary text-left shadow-md focus-within:ring-1 focus-within:ring-secondary'>
             <Combobox.Button className='absolute inset-y-0 left-0 flex items-center pl-2'>

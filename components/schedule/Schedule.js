@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import faLocale from '@fullcalendar/core/locales/fa'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -7,28 +6,7 @@ import Course from '@/components/schedule/Course'
 import { convertPersianNumberToEnglish, getDaysOfWeek } from '@/utils/helpers'
 import { weekDays } from '@/constants/const'
 
-export default function SchedulePage() {
-  const [courses, setCourses] = useState([
-    {
-      id: 1,
-      code: 'CSE101',
-      title: 'برنامه‌سازی وب',
-      lecturer: 'محمدرضا محمدی',
-      daysOfWeek: getDaysOfWeek([1, 3]),
-      startTime: '13:30',
-      endTime: '15:00',
-    },
-    {
-      id: 2,
-      code: 'CSE102',
-      title: 'یادگیری ماشین',
-      lecturer: 'ابولفضل مطهری',
-      daysOfWeek: getDaysOfWeek([0, 2]),
-      startTime: '09:00',
-      endTime: '10:30',
-    },
-  ])
-
+export default function Schedule({ courses }) {
   const handleEventClick = (clickInfo) => {
     if (
       confirm(
@@ -39,9 +17,9 @@ export default function SchedulePage() {
     }
   }
 
-  const handleEvents = (events) => {
-    setCourses(events)
-  }
+  // const handleEvents = (events) => {
+  //   setCourses(events)
+  // }
 
   return (
     <div className='h-[700px]'>
@@ -54,10 +32,12 @@ export default function SchedulePage() {
         selectMirror={false}
         expandRows
         dayMaxEvents
+        eventOverlap={false}
+        slotEventOverlap={true}
         weekends
-        initialEvents={courses}
+        events={courses}
         eventClick={handleEventClick}
-        eventsSet={handleEvents}
+        // eventsSet={handleEvents}
         slotMinTime={'07:00'}
         slotMaxTime={'20:00'}
         direction='rtl'
@@ -71,7 +51,7 @@ export default function SchedulePage() {
             usesMinMaxTime: true,
             allDaySlot: false,
             slotDuration: '01:00:00',
-            slotEventOverlap: true,
+            // slotEventOverlap: true,
             duration: { days: 6 },
             slotLabelContent: ({ date }) => (
               <div className='me-1 ms-2 text-sm font-medium'>

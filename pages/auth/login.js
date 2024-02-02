@@ -110,7 +110,7 @@ export async function getServerSideProps(context) {
   if (session) {
     return {
       redirect: {
-        destination: '/home',
+        destination: '/schedules',
         permanent: false,
       },
     }

@@ -3,34 +3,7 @@ import BBtn from '@/components/dls/BBtn'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { getDaysOfWeek } from '@/utils/helpers'
 
-const courses = [
-  {
-    id: 1,
-    code: 'CSE101-1',
-    title: 'برنامه‌سازی وب',
-    lecturer: 'محمدرضا محمدی',
-    daysOfWeek: getDaysOfWeek([1, 3]),
-    startTime: '13:30',
-    endTime: '15:00',
-    credit: '3',
-    group: '1',
-    examDate: '2023-12-22T09:00',
-  },
-  {
-    id: 2,
-    code: 'CSE102-2',
-    title: 'یادگیری ماشین',
-    lecturer: 'ابولفضل مطهری',
-    daysOfWeek: getDaysOfWeek([0, 2]),
-    startTime: '09:00',
-    endTime: '10:30',
-    credit: '3',
-    examDate: '2023-12-23T13:00',
-    group: '2',
-  },
-]
-
-export default function ExamsTable() {
+export default function ExamsTable({ courses }) {
   const renderProperty = (property, key) => {
     if (key !== 'examDate') return property
     return new Intl.DateTimeFormat('fa-IR', {

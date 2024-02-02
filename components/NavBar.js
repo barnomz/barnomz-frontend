@@ -1,19 +1,29 @@
 import Image from 'next/image'
 import logoSvg from '@/public/images/barnomz-horizontal-logo.svg'
 import BBtn from '@/components/dls/BBtn'
-import { signOut, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import NavBarMenu from '@/components/NavBarMenu'
 import Link from 'next/link'
+import { handleSignOut } from '@/pages/api/auth/[...nextauth]'
+import { useState } from 'react'
 
 export default function NavBar() {
-  // const { session } = useSession()
-  const session = true
+  const [isLoading, setIsLoading] = useState(false)
+  const session = useSession()
+  const isLoggedIn = !!session?.data?.accessToken
+
+  const logout = () => {
+    setIsLoading(true)
+    handleSignOut()
+    setIsLoading(false)
+  }
 
   const navBarEndLoggedIn = (
     <BBtn
       color='primary'
       className='h-[2.25rem]'
-      onClick={() => signOut({ callbackUrl: '/' })}
+      onClick={logout}
+      loading={isLoading}
     >
       خروج
     </BBtn>
@@ -35,8 +45,8 @@ export default function NavBar() {
       <Link href={'/'}>
         <Image src={logoSvg} alt='Barnomz Logo' priority />
       </Link>
-      {session && <NavBarMenu />}
-      {session ? navBarEndLoggedIn : navBarEndLoggedOut}
+      {isLoggedIn && <NavBarMenu />}
+      {isLoggedIn ? navBarEndLoggedIn : navBarEndLoggedOut}
     </div>
   )
 }
