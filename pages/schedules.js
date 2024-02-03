@@ -3,17 +3,17 @@ import ScheduleTabs from '@/components/schedule/ScheduleTabs'
 import Head from 'next/head'
 import CourseSelector from '@/components/schedule/CourseSelector'
 import api from '@/services/api'
-import { getDaysOfWeek } from '@/utils/helpers'
 import { useEffect, useState } from 'react'
 import { schedules } from '@/constants/const'
 
-export default function SchedulesPage({ schedules, colleges }) {
-  const [courses, setCourses] = useState(schedules[0].courses)
+export default function SchedulesPage({ schedulesAsProp, colleges }) {
+  const [schedules, setSchedules] = useState(schedulesAsProp)
   const [currentScheduleId, setCurrentScheduleId] = useState(schedules[0].id)
+  const [courses, setCourses] = useState(schedules[0].courses)
 
   useEffect(() => {
     setCourses(schedules.find((s) => s.id === currentScheduleId).courses)
-  }, [currentScheduleId])
+  }, [currentScheduleId, schedules])
 
   return (
     <>
@@ -30,13 +30,20 @@ export default function SchedulesPage({ schedules, colleges }) {
                 id: s.id,
               }))}
               onChange={setCurrentScheduleId}
+              setSchedules={setSchedules}
             />
-            <Schedule courses={courses} />
+            <Schedule
+              courses={courses}
+              currentScheduleId={currentScheduleId}
+              setSchedules={setSchedules}
+            />
           </div>
 
           <CourseSelector
             colleges={colleges}
+            currentScheduleId={currentScheduleId}
             setCoursesOfSchedule={setCourses}
+            setSchedules={setSchedules}
           />
         </div>
       </div>
@@ -65,7 +72,7 @@ export async function getServerSideProps() {
     props: {
       // schedules: schedulesPromise,
       // colleges: collegesPromise,
-      schedules,
+      schedulesAsProp: schedules,
       colleges,
     },
   }

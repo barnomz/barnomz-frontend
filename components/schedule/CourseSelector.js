@@ -14,6 +14,8 @@ export default function CourseSelector({
   colleges,
   mode = 'search',
   setCoursesOfSchedule,
+  currentScheduleId,
+  setSchedules,
 }) {
   if (!['search', 'filter'].includes(mode)) {
     throw new Error('The mode should be either search or filter.')
@@ -46,6 +48,17 @@ export default function CourseSelector({
       delete courseInSchedule.mode
       return [...prev, { ...courseInSchedule }]
     })
+    setSchedules((prev) =>
+      prev.map((schedule) => {
+        if (schedule.id === currentScheduleId) {
+          return {
+            ...schedule,
+            courses: [...schedule.courses, course],
+          }
+        }
+        return schedule
+      }),
+    )
   }
 
   const addCourseAsHover = (course) => {
@@ -66,11 +79,6 @@ export default function CourseSelector({
 
   return (
     <div className='min-w-[20rem] max-w-[20rem] space-y-4 rounded-xl bg-primary/50 p-4 backdrop-blur'>
-      {/*<div className='flex items-center justify-between text-xs'>*/}
-      {/*  <h4>تعداد واحدهای انتخاب‌شده</h4>*/}
-      {/*  <span>{totalCreditSum}</span>*/}
-      {/*</div>*/}
-
       <CollegeCombobox
         colleges={colleges}
         onSelect={(id) => fetchCollegeCourses(id)}

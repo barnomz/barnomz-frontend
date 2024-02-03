@@ -15,11 +15,13 @@ import {
   lengthIsEqualTo,
   lengthIsGreaterOrEqualThan,
 } from '@/utils/validations'
+import { useToast } from '@/components/dls/toast/ToastService'
 
 export default function Login() {
+  const router = useRouter()
+  const toast = useToast()
   const [isLoading, setIsLoading] = useState(false)
   const [credentials, setCredentials] = useState({ username: '', password: '' })
-  const router = useRouter()
 
   const handleLogin = async (isFormValid) => {
     if (!isFormValid) return
@@ -34,6 +36,14 @@ export default function Login() {
 
     if (result.ok && result.url) {
       await router.replace(result.url)
+    } else {
+      console.error('Login failed:', result.error)
+      // check status code and show appropriate message
+      if (result.error === 'CredentialsSignin') {
+        toast.open({ message: 'ورود ناموفق بود.', type: 'error' })
+      } else {
+        toast.open({ message: 'خطایی رخ داده است.', type: 'error' })
+      }
     }
   }
 

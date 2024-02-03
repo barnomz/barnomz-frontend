@@ -3,26 +3,62 @@ import faLocale from '@fullcalendar/core/locales/fa'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import { DayTimeColsView } from '@fullcalendar/timegrid/internal'
 import Course from '@/components/schedule/Course'
-import { convertPersianNumberToEnglish, getDaysOfWeek } from '@/utils/helpers'
+import { convertPersianNumberToEnglish } from '@/utils/helpers'
 import { weekDays } from '@/constants/const'
+import DeleteCourseDialogConfirmation from '@/components/schedule/DeleteCourseDialogConfirmation'
+import { useState } from 'react'
+import api from '@/services/api'
+import messages from '@/constants/messages'
+import { useToast } from '@/components/dls/toast/ToastService'
 
-export default function Schedule({ courses }) {
+export default function Schedule({ courses, currentScheduleId, setSchedules }) {
+  const toast = useToast()
+  const [isOpen, setIsOpen] = useState(false)
+  const [courseCodeToBeDeleted, setCourseCodeToBeDeleted] = useState(null)
+
   const handleEventClick = (clickInfo) => {
-    if (
-      confirm(
-        `Are you sure you want to delete the event '${clickInfo.event.title}'`,
-      )
-    ) {
-      clickInfo.event.remove()
-    }
+    setCourseCodeToBeDeleted(clickInfo.event.extendedProps.course_code)
+    setIsOpen(true)
   }
 
-  // const handleEvents = (events) => {
-  //   setCourses(events)
-  // }
+  const removeCourse = async () => {
+    // TODO: removeCourseApiCall
+
+    setSchedules((prev) =>
+      prev.map((schedule) => {
+        if (schedule.id === currentScheduleId) {
+          return {
+            ...schedule,
+            courses: schedule.courses.filter(
+              (course) => course.course_code !== courseCodeToBeDeleted,
+            ),
+          }
+        }
+        return schedule
+      }),
+    )
+    setIsOpen(false)
+  }
+
+  const removeCourseApiCall = async (ctx) => {
+    return await api.schedule
+      .deleteCourseFromSchedule({
+        scheduleId: currentScheduleId,
+        data: { course: { id: ctx.id } },
+      })
+      .catch((err) => {
+        const message = err.response?.data?.message || messages.ERROR_OCCURRED
+        toast.open({ message, type: 'error' })
+      })
+  }
 
   return (
     <div className='h-[700px]'>
+      <DeleteCourseDialogConfirmation
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onConfirm={removeCourse}
+      />
       <FullCalendar
         plugins={[timeGridPlugin]}
         initialView='timeGridWeek'
@@ -37,7 +73,6 @@ export default function Schedule({ courses }) {
         weekends
         events={courses}
         eventClick={handleEventClick}
-        // eventsSet={handleEvents}
         slotMinTime={'07:00'}
         slotMaxTime={'20:00'}
         direction='rtl'
@@ -51,7 +86,6 @@ export default function Schedule({ courses }) {
             usesMinMaxTime: true,
             allDaySlot: false,
             slotDuration: '01:00:00',
-            // slotEventOverlap: true,
             duration: { days: 6 },
             slotLabelContent: ({ date }) => (
               <div className='me-1 ms-2 text-sm font-medium'>
@@ -71,7 +105,6 @@ export default function Schedule({ courses }) {
             eventContent: (event) => (
               <Course
                 course={{
-                  title: event.event.title,
                   ...event.event.extendedProps,
                 }}
               ></Course>

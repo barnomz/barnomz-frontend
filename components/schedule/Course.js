@@ -13,7 +13,7 @@ const Course = ({ course, ...props }) => {
   const isSearch = ['search', 'filter'].includes(mode)
 
   const wrapperClasses = cn(
-    'flex h-full w-full flex-col items-center justify-center',
+    'flex h-full w-full flex-col items-center justify-center cursor-pointer ripple',
     'gap-1 rounded-lg py-2',
     isSearch ? 'text-grey-50' : 'text-primary-darker',
     mode === 'hover' && 'bg-grey-300',
@@ -23,7 +23,9 @@ const Course = ({ course, ...props }) => {
   )
   return (
     <div className={wrapperClasses}>
-      <span>{course.course_code}</span>
+      <span>
+        {course.course_code}-{course.group}
+      </span>
       <span className='font-bold'>{course.course_name}</span>
       <span>{course.presented_by}</span>
       {mode === 'search' && (

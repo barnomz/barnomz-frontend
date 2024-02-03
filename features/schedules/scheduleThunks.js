@@ -3,14 +3,9 @@ import api from '@/services/api'
 
 export const addSchedule = createAsyncThunk(
   'schedules/addSchedule',
-  async (arg, thunkAPI) => {},
-)
-
-export const deleteSchedule = createAsyncThunk(
-  'schedules/deleteSchedule',
   async (arg, thunkAPI) => {
     return await api.schedule
-      .deleteSchedule({ scheduleId: arg.scheduleId })
+      .addSchedule()
       .then((res) => res.data)
       .catch((error) => thunkAPI.rejectWithValue(error))
   },
@@ -22,20 +17,20 @@ export const addCourseToSchedule = createAsyncThunk(
     return await api.schedule
       .addCourseToSchedule({
         scheduleId: arg.scheduleId,
-        data: { course: { id: arg.course.id } },
+        data: { course: { id: arg.id } },
       })
       .then((res) => res.data)
       .catch((error) => thunkAPI.rejectWithValue(error))
   },
 )
 
-export const deleteCourseFromSchedule = createAsyncThunk(
+export const removeCourseFromSchedule = createAsyncThunk(
   'schedules/deleteCourseFromSchedule',
   async (arg, thunkAPI) => {
     return await api.schedule
       .deleteCourseFromSchedule({
-        scheduleId: arg.scheduleId,
-        data: { course: { id: arg.course.id } },
+        scheduleId: thunkAPI.getState().currentScheduleId,
+        data: { course: { id: arg.id } },
       })
       .then((res) => res.data)
       .catch((error) => thunkAPI.rejectWithValue(error))

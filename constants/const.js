@@ -50,7 +50,7 @@ export const examsTableHeaders = [
 export const coursesMockData = [
   {
     id: 1,
-    course_code: 'CSE101',
+    course_code: '40101',
     course_name: 'برنامه‌سازی وب',
     presented_by: 'محمدرضا محمدی',
     daysOfWeek: getDaysOfWeek([1, 3]),
@@ -61,7 +61,7 @@ export const coursesMockData = [
   },
   {
     id: 2,
-    course_code: 'CSE102',
+    course_code: '40102',
     course_name: 'یادگیری ماشین',
     presented_by: 'ابولفضل مطهری',
     daysOfWeek: getDaysOfWeek([0, 2]),
@@ -72,7 +72,7 @@ export const coursesMockData = [
   },
   {
     id: 3,
-    course_code: 'CSE103',
+    course_code: '40103',
     course_name: 'طراحی پایگاه داده‌ها',
     presented_by: 'مهدی آخی',
     daysOfWeek: getDaysOfWeek([0, 2]),
@@ -83,7 +83,7 @@ export const coursesMockData = [
   },
   {
     id: 4,
-    course_code: 'CSE104',
+    course_code: '40104',
     course_name: 'مهندسی نرم‌اقزار',
     presented_by: 'ریواده',
     daysOfWeek: getDaysOfWeek([1, 3]),
@@ -94,7 +94,7 @@ export const coursesMockData = [
   },
   {
     id: 5,
-    course_code: 'CSE103-1',
+    course_code: '40105',
     course_name: 'طراحی پایگاه داده‌ها',
     presented_by: 'محمدرضا محمدی',
     daysOfWeek: getDaysOfWeek([1, 3]),
@@ -105,7 +105,7 @@ export const coursesMockData = [
   },
   {
     id: 6,
-    course_code: 'CSE103-2',
+    course_code: '40106',
     course_name: 'طراحی پایگاه داده‌ها',
     presented_by: 'ابولفضل مطهری',
     daysOfWeek: getDaysOfWeek([0, 2]),
@@ -122,7 +122,7 @@ export const schedules = [
     courses: [
       {
         id: 1,
-        course_code: 'CSE101',
+        course_code: '40101',
         course_name: 'برنامه‌سازی وب',
         presented_by: 'محمدرضا محمدی',
         daysOfWeek: getDaysOfWeek([1, 3]),
@@ -134,7 +134,7 @@ export const schedules = [
       },
       {
         id: 2,
-        course_code: 'CSE102',
+        course_code: '40102',
         course_name: 'یادگیری ماشین',
         presented_by: 'ابولفضل مطهری',
         daysOfWeek: getDaysOfWeek([0, 2]),
@@ -151,7 +151,7 @@ export const schedules = [
     courses: [
       {
         id: 3,
-        course_code: 'CSE103',
+        course_code: '40103',
         course_name: 'طراحی پایگاه داده‌ها',
         presented_by: 'مهدی آخی',
         daysOfWeek: getDaysOfWeek([0, 2]),
@@ -163,7 +163,7 @@ export const schedules = [
       },
       {
         id: 4,
-        course_code: 'CSE104',
+        course_code: '40104',
         course_name: 'مهندسی نرم‌اقزار',
         presented_by: 'ریواده',
         daysOfWeek: getDaysOfWeek([1, 3]),

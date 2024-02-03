@@ -11,25 +11,15 @@ export default NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        try {
-          const res = await api.auth.login({
+        return await api.auth
+          .login({
             data: credentials,
             headers: {
               'Content-Type': 'multipart/form-data',
             },
           })
-          console.log(res.data)
-          if (res.data) {
-            res.data.token =
-              'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWQiOiIyYWY5M2E5MTc5NzE1ZjMzMzNlZDRlZDRjMmI0YjJkMWYxMDQ0MjJjNTRjOTQ2OTUxMThhNGI4YTJjNjJlYjAwIiwidXNlcl9pZCI6MzA4NDQ5LCJ1c2VybmFtZSI6IjkxMDIzMzEzMTEiLCJvcmlnX2lhdCI6MTcwNDQ2NTIxOSwiZGV2aWNlX2lkIjoiNzUzZDAxOGE5YWE1YzlkNzY0Y2E1MGM3MWRhYTllNDgiLCJleHAiOjE3MDcwNTcyMTl9.lJw-isiJFRJNET8yFgfIrjFepvTwsy-kIpNclquk819-msNWRzzVsRQK46cjN0hHlAcZ9BUtJv4J3K6KFtomtw'
-            return res.data
-          } else {
-            return null
-          }
-        } catch (error) {
-          console.error(error)
-          return null
-        }
+          .then((res) => res.data.data)
+          .catch(() => null)
       },
     }),
   ],

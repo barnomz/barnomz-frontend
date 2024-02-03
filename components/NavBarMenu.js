@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Tab } from '@headlessui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -33,9 +33,15 @@ const navigations = [
 export default function NavBarMenu() {
   const router = useRouter()
 
-  const [activeNavIndex] = useState(
-    navigations.findIndex((nav) => router.asPath.startsWith(nav.link)),
+  const [activeNavIndex, setActiveNavIndex] = useState(
+    navigations.findIndex((nav) => router.asPath.startsWith(nav.link)) || 0,
   )
+
+  useEffect(() => {
+    setActiveNavIndex(
+      navigations.findIndex((nav) => router.asPath.startsWith(nav.link)) || 0,
+    )
+  }, [router.asPath])
 
   return (
     <Tab.Group defaultIndex={activeNavIndex}>
