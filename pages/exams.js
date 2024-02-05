@@ -50,8 +50,6 @@ export async function getServerSideProps(context) {
     schedule.courses = schedule.classes.map(courseMapper)
     delete schedule.classes
   })
-  console.log(schedules)
-  console.log(schedules[0].courses)
   return {
     props: {
       schedules,

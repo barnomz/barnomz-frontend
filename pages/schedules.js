@@ -57,7 +57,6 @@ export async function getServerSideProps(context) {
   const { req } = context
   const session = await getSession({ req })
   setToken(session.accessToken)
-  console.log(session.accessToken)
   const schedulesPromise = api.schedule
     .fetchSchedules()
     .then((res) => res.data.data)

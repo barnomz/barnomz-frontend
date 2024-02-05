@@ -65,7 +65,6 @@ export async function getServerSideProps(context) {
   const { req } = context
   const session = await getSession({ req })
   setToken(session.accessToken)
-  console.log(session.accessToken)
   // fetch lecturers from /lecturers/<lecturersId>
   const fetchLecturerPromise = api.lecturer
     .fetchLecturer({ lecturerId: context.params.lecturers })
