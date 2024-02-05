@@ -14,6 +14,7 @@ function classNames(...classes) {
 export default function ScheduleTabs({
   currentScheduleId,
   schedules,
+  setSchedules,
   onChange,
   showAddButton = true,
 }) {
@@ -25,9 +26,18 @@ export default function ScheduleTabs({
     setIsLoading(true)
     return await api.schedule
       .addSchedule()
-      .then((res) => res.data)
+      .then((res) => {
+        toast.open({
+          message: 'برنامه‌ی جدید با موفقیت ساخته شد.',
+          type: 'success',
+        })
+        setSchedules((prev) => [...prev, res.data.data])
+      })
       .catch((err) => {
-        const message = err.response?.data?.message || messages.ERROR_OCCURRED
+        const message =
+          err.response?.data?.message ||
+          err.response?.data?.detail ||
+          messages.ERROR_OCCURRED
         toast.open({ message, type: 'error' })
       })
       .finally(() => {

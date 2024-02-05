@@ -62,7 +62,10 @@ export default function Register() {
         }
       })
       .catch((err) => {
-        const message = err.response?.data?.message || messages.ERROR_OCCURRED
+        const message =
+          err.response?.data?.message ||
+          err.response?.data?.detail ||
+          messages.ERROR_OCCURRED
         toast.open({ message, type: 'error' })
       })
     setIsLoading(false)

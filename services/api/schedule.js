@@ -7,17 +7,20 @@ const schedule = {
     return dataFetcher.get(NAMESPACE, config)
   },
   addSchedule(config) {
-    return dataFetcher.post(NAMESPACE, config)
+    return dataFetcher.post(NAMESPACE + 'add/', config)
   },
   deleteSchedule(config) {
     return dataFetcher.delete(NAMESPACE + config.scheduleId + '/', config)
   },
   addCourseToSchedule(config) {
-    return dataFetcher.post(NAMESPACE + config.scheduleId + '/course/', config)
+    return dataFetcher.post(
+      NAMESPACE + config.scheduleId + '/addCourse/',
+      config,
+    )
   },
   deleteCourseFromSchedule(config) {
     return dataFetcher.delete(
-      NAMESPACE + config.scheduleId + '/course/',
+      NAMESPACE + config.scheduleId + '/deleteCourse/',
       config,
     )
   },

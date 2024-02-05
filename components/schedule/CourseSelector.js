@@ -1,14 +1,12 @@
 import CollegeCombobox from '@/components/schedule/CollegeCombobox'
 import BInput from '@/components/dls/BInput'
-import { faChevronDown, faSearch } from '@fortawesome/free-solid-svg-icons'
-import { Disclosure } from '@headlessui/react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getDaysOfWeek } from '@/utils/helpers'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
-import Course from '@/components/schedule/Course'
 import api from '@/services/api'
 import Loading from '@/components/Loading'
-import { coursesMockData } from '@/constants/const'
+import messages from '@/constants/messages'
+import { useToast } from '@/components/dls/toast/ToastService'
+import { courseMapper } from '@/utils/mappers'
 
 export default function CourseSelector({
   colleges,
@@ -21,6 +19,7 @@ export default function CourseSelector({
     throw new Error('The mode should be either search or filter.')
   }
 
+  const toast = useToast()
   const [isLoading, setIsLoading] = useState(false)
   const [query, setQuery] = useState('')
   const [courses, setCourses] = useState([])
@@ -36,10 +35,35 @@ export default function CourseSelector({
 
   const fetchCollegeCourses = async (collegeId) => {
     setIsLoading(true)
-    // const { data } = await api.department.fetchCollegeCourses({ collegeId })
-    const data = coursesMockData
+    const data = await api.department
+      .fetchCollegeCourses({ collegeId })
+      .then((res) => res.data.data)
+      .then((courses) => courses.map(courseMapper))
+      .catch((err) => {
+        const message =
+          err.response?.data?.message ||
+          err.response?.data?.detail ||
+          messages.ERROR_OCCURRED
+        toast.open({ message, type: 'error' })
+      })
     setCourses(data)
     setIsLoading(false)
+  }
+
+  const addCourseToSchedule = (course) => {
+    api.schedule
+      .addCourseToSchedule({
+        scheduleId: currentScheduleId,
+        data: { id: course.id },
+      })
+      .catch((err) => {
+        const message =
+          err.response?.data?.message ||
+          err.response?.data?.detail ||
+          messages.ERROR_OCCURRED
+        toast.open({ message, type: 'error' })
+      })
+    addCourse(course)
   }
 
   const addCourse = (course) => {
@@ -102,10 +126,10 @@ export default function CourseSelector({
               className='flex cursor-pointer items-center justify-between rounded bg-grey-300/60 px-2 py-1 text-primary-darker transition-all hover:bg-grey-300'
               onMouseEnter={() => addCourseAsHover(course)}
               onMouseLeave={() => removeCourse(course)}
-              onClick={() => addCourse(course)}
+              onClick={() => addCourseToSchedule(course)}
             >
               <span>{course.course_name}</span>
-              <span>{course.group}</span>
+              {/*<span>{course.group}</span>*/}
             </div>
           ))
         )}

@@ -2,14 +2,17 @@ import ScheduleTabs from '@/components/schedule/ScheduleTabs'
 import Head from 'next/head'
 import ExamsTable from '@/components/exams/ExamsTable'
 import { useEffect, useState } from 'react'
-import { schedules } from '@/constants/const'
+import { getSession } from 'next-auth/react'
+import { setToken } from '@/services/axios'
+import api from '@/services/api'
+import { courseMapper } from '@/utils/mappers'
 
 export default function ExamsPage({ schedules }) {
-  const [courses, setCourses] = useState(schedules[0].courses)
-  const [currentScheduleId, setCurrentScheduleId] = useState(schedules[0].id)
+  const [courses, setCourses] = useState(schedules[0]?.courses || [])
+  const [currentScheduleId, setCurrentScheduleId] = useState(schedules[0]?.id)
 
   useEffect(() => {
-    setCourses(schedules.find((s) => s.id === currentScheduleId).courses)
+    setCourses(schedules.find((s) => s.id === currentScheduleId)?.courses)
   }, [currentScheduleId])
 
   return (
@@ -36,8 +39,19 @@ export default function ExamsPage({ schedules }) {
   )
 }
 
-export async function getServerSideProps() {
-  // const schedules = await api.schedule.fetchSchedules().then((res) => res.data)
+export async function getServerSideProps(context) {
+  const { req } = context
+  const session = await getSession({ req })
+  setToken(session.accessToken)
+  const schedules = await api.schedule
+    .fetchSchedules()
+    .then((res) => res.data.data)
+  schedules.forEach((schedule) => {
+    schedule.courses = schedule.classes.map(courseMapper)
+    delete schedule.classes
+  })
+  console.log(schedules)
+  console.log(schedules[0].courses)
   return {
     props: {
       schedules,

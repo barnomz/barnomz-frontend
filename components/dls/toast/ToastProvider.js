@@ -22,7 +22,7 @@ export default function ToastProvider({ children }) {
   return (
     <ToastContext.Provider value={{ open, close }}>
       {children}
-      <div className='absolute bottom-4 right-4 space-y-2'>
+      <div className='absolute bottom-4 right-4 z-20 space-y-2'>
         <AnimatePresence>
           {toasts.map(({ id, component }) => (
             <motion.div

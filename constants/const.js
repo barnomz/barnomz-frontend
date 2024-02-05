@@ -41,10 +41,10 @@ export const examsTableHeaders = [
     key: 'examDate',
     value: 'زمان امتحان',
   },
-  {
-    key: 'remove',
-    value: 'حذف',
-  },
+  // {
+  //   key: 'remove',
+  //   value: 'حذف',
+  // },
 ]
 
 export const coursesMockData = [

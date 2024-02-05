@@ -14,13 +14,14 @@ axiosInstance.interceptors.request.use(async (request) => {
   const session = await getSession()
 
   if (session) {
-    request.headers = {
-      ...request.headers,
-      Authorization: `Bearer ${session.accessToken}`,
-    }
+    request.headers.Authorization = `Token ${session.accessToken}`
   }
 
   return request
 })
+
+export const setToken = (token) => {
+  axiosInstance.defaults.headers.common.Authorization = `Token ${token}`
+}
 
 export default axiosInstance

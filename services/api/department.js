@@ -7,7 +7,7 @@ const department = {
     return dataFetcher.get(NAMESPACE, config)
   },
   fetchCollegeCourses(config) {
-    return dataFetcher.get(NAMESPACE + config.collegeId + '/course/', config)
+    return dataFetcher.get(NAMESPACE + config.collegeId + '/courses/', config)
   },
 }
 

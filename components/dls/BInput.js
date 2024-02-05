@@ -23,6 +23,7 @@ const BInput = ({
   validations = [],
   onChange,
   value,
+  isTextarea = false,
   ...props
 }) => {
   const [id, setId] = useState(null)
@@ -80,6 +81,20 @@ const BInput = ({
     inputClass,
   ].join(' ')
 
+  const controlProps = {
+    id: `input-${id}`,
+    value: model,
+    placeholder: placeholder,
+    className: inputClasses,
+    readOnly: readonly,
+    disabled: disabled,
+    dir: dir,
+    autoComplete: autocomplete,
+    onInput: handleValidation,
+    onChange: onChangeWrapper,
+    ...(isTextarea ? {} : { type: type }), // Only add type prop for input, not for textarea
+  }
+
   return (
     <div className='flex flex-col gap-y-1' {...props}>
       {(label || labelSlot || labelAsideSlot) && (
@@ -116,19 +131,11 @@ const BInput = ({
           </div>
         )}
 
-        <input
-          id={`input-${id}`}
-          value={model}
-          placeholder={placeholder}
-          className={inputClasses}
-          type={type}
-          readOnly={readonly}
-          disabled={disabled}
-          dir={dir}
-          autoComplete={autocomplete}
-          onInput={handleValidation}
-          onChange={onChangeWrapper}
-        />
+        {isTextarea ? (
+          <textarea {...controlProps} />
+        ) : (
+          <input {...controlProps} />
+        )}
 
         {appendSlot && (
           <div className='tw-flex tw-items-center tw-justify-center'>

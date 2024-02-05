@@ -9,21 +9,41 @@ import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
+import api from '@/services/api'
+
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value)
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value)
+    }, delay)
+
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [value, delay])
+
+  return debouncedValue
+}
 
 export default function LecturersPage({ lecturers }) {
   const [searchQuery, setSearchQuery] = useState('')
+  const debouncedSearchQuery = useDebounce(searchQuery, 500)
   const [filteredLecturers, setFilteredLecturers] = useState([])
 
   useEffect(() => {
-    if (!searchQuery) return setFilteredLecturers([])
+    if (!debouncedSearchQuery) return setFilteredLecturers([])
     setFilteredLecturers(
-      lecturers.filter(
-        (lecturer) =>
-          lecturer.name.includes(searchQuery) ||
-          lecturer.college.includes(searchQuery),
-      ),
+      lecturers
+        .filter(
+          (lecturer) =>
+            lecturer.name.includes(debouncedSearchQuery) ||
+            lecturer.college.includes(debouncedSearchQuery),
+        )
+        .slice(0, 20),
     )
-  }, [searchQuery])
+  }, [lecturers, debouncedSearchQuery])
 
   const clearIcon = (
     <BBtn
@@ -86,132 +106,16 @@ export default function LecturersPage({ lecturers }) {
 
 export async function getServerSideProps() {
   // fetch lecturers from /lecturers
-  // const lecturers = await api.lecturer
-  //   .fetchAllLecturers()
-  //   .then((res) => res.data)
-  const lecturers = [
-    {
-      id: 1,
-      name: 'محمد نظری',
-      college: 'مهندسی کامپیوتر',
-      numberOfVotes: 100,
-      rate: {
-        teachQuality: 1,
-        scoring: 3,
-        morality: 4.7,
-      },
-    },
-    {
-      id: 2,
-      name: 'علی امیری',
-      college: 'مهندسی برق',
-      numberOfVotes: 100,
-      rate: {
-        teachQuality: 1,
-        scoring: 3,
-        morality: 4.7,
-      },
-    },
-    {
-      id: 3,
-      name: 'حمیدرضا ربیعی',
-      college: 'مهندسی کامپیوتر',
-      numberOfVotes: 100,
-      rate: {
-        teachQuality: 1,
-        scoring: 3,
-        morality: 4.7,
-      },
-    },
-    {
-      id: 4,
-      name: 'مهدی  صفرنژاد',
-      college: 'مهندسی کامپیوتر',
-      numberOfVotes: 100,
-      rate: {
-        teachQuality: 1,
-        scoring: 3,
-        morality: 4.7,
-      },
-    },
-    {
-      id: 5,
-      name: 'محمد نظری',
-      college: 'مهندسی کامپیوتر',
-      numberOfVotes: 100,
-      rate: {
-        teachQuality: 1,
-        scoring: 3,
-        morality: 4.7,
-      },
-    },
-    {
-      id: 6,
-      name: 'احمد الهی',
-      college: 'شیمی',
-      numberOfVotes: 100,
-      rate: {
-        teachQuality: 1,
-        scoring: 3,
-        morality: 4.7,
-      },
-    },
-    {
-      id: 7,
-      name: 'سپیده صفری',
-      college: 'مهندسی کامپیوتر',
-      numberOfVotes: 100,
-      rate: {
-        teachQuality: 1,
-        scoring: 3,
-        morality: 4.7,
-      },
-    },
-    {
-      id: 8,
-      name: 'محسن انصاری',
-      college: 'مهندسی کامپیوتر',
-      numberOfVotes: 100,
-      rate: {
-        teachQuality: 1,
-        scoring: 3,
-        morality: 4.7,
-      },
-    },
-    {
-      id: 9,
-      name: 'محمدامین فضلی',
-      college: 'مهندسی کامپیوتر',
-      numberOfVotes: 100,
-      rate: {
-        teachQuality: 1,
-        scoring: 3,
-        morality: 4.7,
-      },
-    },
-    {
-      id: 10,
-      name: 'محمدمهدی سمیعی',
-      college: 'مهندسی کامپیوتر',
-      numberOfVotes: 100,
-      rate: {
-        teachQuality: 1,
-        scoring: 3,
-        morality: 4.7,
-      },
-    },
-    {
-      id: 11,
-      name: 'محمد نظری ۲',
-      college: 'مهندسی کامپیوتر',
-      numberOfVotes: 100,
-      rate: {
-        teachQuality: 1,
-        scoring: 3,
-        morality: 4.7,
-      },
-    },
-  ]
+  const lecturers = await api.lecturer
+    .fetchAllLecturers()
+    .then((res) => res.data.data)
+    .then((data) =>
+      data.map((lecturer) => ({
+        ...lecturer,
+        name: lecturer.full_name,
+        college: lecturer.department,
+      })),
+    )
 
   return {
     props: { lecturers },

@@ -4,15 +4,17 @@ import Head from 'next/head'
 import CourseSelector from '@/components/schedule/CourseSelector'
 import api from '@/services/api'
 import { useEffect, useState } from 'react'
-import { schedules } from '@/constants/const'
+import { setToken } from '@/services/axios'
+import { getSession } from 'next-auth/react'
+import { courseMapper } from '@/utils/mappers'
 
 export default function SchedulesPage({ schedulesAsProp, colleges }) {
   const [schedules, setSchedules] = useState(schedulesAsProp)
-  const [currentScheduleId, setCurrentScheduleId] = useState(schedules[0].id)
-  const [courses, setCourses] = useState(schedules[0].courses)
+  const [currentScheduleId, setCurrentScheduleId] = useState(schedules[0]?.id)
+  const [courses, setCourses] = useState(schedules[0]?.courses || [])
 
   useEffect(() => {
-    setCourses(schedules.find((s) => s.id === currentScheduleId).courses)
+    setCourses(schedules.find((s) => s.id === currentScheduleId)?.courses || [])
   }, [currentScheduleId, schedules])
 
   return (
@@ -51,27 +53,30 @@ export default function SchedulesPage({ schedulesAsProp, colleges }) {
   )
 }
 
-export async function getServerSideProps() {
-  // const schedulesPromise = api.schedule.fetchSchedules().then((res) => res.data)
-  // const collegesPromise = api.department.fetchColleges().then((res) => res.data)
+export async function getServerSideProps(context) {
+  const { req } = context
+  const session = await getSession({ req })
+  setToken(session.accessToken)
+  console.log(session.accessToken)
+  const schedulesPromise = api.schedule
+    .fetchSchedules()
+    .then((res) => res.data.data)
+  const collegesPromise = api.department
+    .fetchColleges()
+    .then((res) => res.data.data)
 
-  // await Promise.allSettled([schedulesPromise, collegesPromise])
-  const colleges = [
-    { id: 1, name: 'مهندسی کامپیوتر' },
-    { id: 2, name: 'مهندسی برق' },
-    { id: 3, name: 'مهندسی عمران' },
-    { id: 4, name: 'مهندسی مکانیک' },
-    { id: 5, name: 'مهندسی شیمی' },
-    { id: 6, name: 'مهندسی صنایع' },
-    { id: 7, name: 'شیمی' },
-    { id: 8, name: 'فیزیک' },
-    { id: 9, name: 'ریاضی' },
-    { id: 10, name: 'علو کامپیوتر' },
-  ]
+  const [schedules, colleges] = await Promise.all([
+    schedulesPromise,
+    collegesPromise,
+  ])
+
+  schedules.forEach((schedule) => {
+    schedule.courses = schedule.classes.map(courseMapper) || []
+    delete schedule.classes
+  })
+
   return {
     props: {
-      // schedules: schedulesPromise,
-      // colleges: collegesPromise,
       schedulesAsProp: schedules,
       colleges,
     },

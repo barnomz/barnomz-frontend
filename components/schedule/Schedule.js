@@ -14,15 +14,16 @@ import { useToast } from '@/components/dls/toast/ToastService'
 export default function Schedule({ courses, currentScheduleId, setSchedules }) {
   const toast = useToast()
   const [isOpen, setIsOpen] = useState(false)
-  const [courseCodeToBeDeleted, setCourseCodeToBeDeleted] = useState(null)
+  const [courseIdToBeDeleted, setCourseIdToBeDeleted] = useState(null)
 
   const handleEventClick = (clickInfo) => {
-    setCourseCodeToBeDeleted(clickInfo.event.extendedProps.course_code)
+    // setCourseCodeToBeDeleted(clickInfo.event.extendedProps.course_code)
+    setCourseIdToBeDeleted(Number(clickInfo.event.id))
     setIsOpen(true)
   }
 
-  const removeCourse = async () => {
-    // TODO: removeCourseApiCall
+  const removeCourse = () => {
+    removeCourseApiCall({ id: courseIdToBeDeleted })
 
     setSchedules((prev) =>
       prev.map((schedule) => {
@@ -30,7 +31,7 @@ export default function Schedule({ courses, currentScheduleId, setSchedules }) {
           return {
             ...schedule,
             courses: schedule.courses.filter(
-              (course) => course.course_code !== courseCodeToBeDeleted,
+              (course) => course.id !== courseIdToBeDeleted,
             ),
           }
         }
@@ -44,10 +45,13 @@ export default function Schedule({ courses, currentScheduleId, setSchedules }) {
     return await api.schedule
       .deleteCourseFromSchedule({
         scheduleId: currentScheduleId,
-        data: { course: { id: ctx.id } },
+        data: { id: ctx.id },
       })
       .catch((err) => {
-        const message = err.response?.data?.message || messages.ERROR_OCCURRED
+        const message =
+          err.response?.data?.message ||
+          err.response?.data?.detail ||
+          messages.ERROR_OCCURRED
         toast.open({ message, type: 'error' })
       })
   }
@@ -78,7 +82,7 @@ export default function Schedule({ courses, currentScheduleId, setSchedules }) {
         direction='rtl'
         initialDate={'2023-12-30'}
         locale={faLocale}
-        firstDay={2}
+        firstDay={0}
         height={'700px'}
         views={{
           timeGrid: {
@@ -105,6 +109,7 @@ export default function Schedule({ courses, currentScheduleId, setSchedules }) {
             eventContent: (event) => (
               <Course
                 course={{
+                  id: event.event.id,
                   ...event.event.extendedProps,
                 }}
               ></Course>
