@@ -5,8 +5,8 @@ import CourseSelector from '@/components/schedule/CourseSelector'
 import api from '@/services/api'
 import { useEffect, useState } from 'react'
 import { setToken } from '@/services/axios'
+import { getSession } from 'next-auth/react'
 import { courseMapper } from '@/utils/mappers'
-import { getSessionFromCookie } from '@/helpers/getSessionFromCookie'
 
 export default function SchedulesPage({ schedulesAsProp, colleges }) {
   const [schedules, setSchedules] = useState(schedulesAsProp)
@@ -55,7 +55,7 @@ export default function SchedulesPage({ schedulesAsProp, colleges }) {
 
 export async function getServerSideProps(context) {
   const { req } = context
-  const session = await getSessionFromCookie({ req })
+  const session = await getSession({ req })
   setToken(session.accessToken)
   const schedulesPromise = api.schedule
     .fetchSchedules()

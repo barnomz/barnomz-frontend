@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { signIn } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import BForm from '@/components/dls/BForm'
 import BInput from '@/components/dls/BInput'
@@ -19,7 +19,6 @@ import BToast from '@/components/dls/toast/BToast'
 import { useToast } from '@/components/dls/toast/ToastService'
 import api from '@/services/api'
 import messages from '@/constants/messages'
-import { getSessionFromCookie } from '@/helpers/getSessionFromCookie'
 
 export default function Register() {
   const [isLoading, setIsLoading] = useState(false)
@@ -176,7 +175,7 @@ export default function Register() {
 
 export async function getServerSideProps(context) {
   const { req } = context
-  const session = await getSessionFromCookie({ req })
+  const session = await getSession({ req })
 
   if (session) {
     return {
