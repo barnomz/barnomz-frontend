@@ -1,0 +1,5 @@
+NEXT_PUBLIC_API_BASE_URL=https://api.barnomz.ir
+SERVER_API_BASE_URL=https://api.barnomz.ir
+NEXTAUTH_URL=https://barnomz.ir
+NEXTAUTH_URL_INTERNAL=http://localhost:3000
+NEXTAUTH_SECRET=kbaLPDOd4/qV9fplfaYh6+zzWMnRHsfDePNWUr61hBI=
