@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use(async (request) => {
-  const session = await getSession()
+  const session = await getSession({ req: request })
 
   if (session) {
     request.headers.Authorization = `Token ${session.accessToken}`
