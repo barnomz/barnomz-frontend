@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { getSessionFromCookie } from '@/helpers/getSessionFromCookie'
+import { getSession } from 'next-auth/react'
 
-const baseUrl = 'https://api.barnomz.ir/api'
+const baseUrl = 'http://127.0.0.1:8000/api'
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,
@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use(async (request) => {
-  const session = await getSessionFromCookie({ req: request })
+  const session = await getSession()
 
   if (session) {
     request.headers.Authorization = `Token ${session.accessToken}`

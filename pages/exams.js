@@ -2,10 +2,10 @@ import ScheduleTabs from '@/components/schedule/ScheduleTabs'
 import Head from 'next/head'
 import ExamsTable from '@/components/exams/ExamsTable'
 import { useEffect, useState } from 'react'
+import { getSession } from 'next-auth/react'
 import { setToken } from '@/services/axios'
 import api from '@/services/api'
 import { courseMapper } from '@/utils/mappers'
-import { getSessionFromCookie } from '@/helpers/getSessionFromCookie'
 
 export default function ExamsPage({ schedules }) {
   const [courses, setCourses] = useState(schedules[0]?.courses || [])
@@ -41,7 +41,7 @@ export default function ExamsPage({ schedules }) {
 
 export async function getServerSideProps(context) {
   const { req } = context
-  const session = await getSessionFromCookie({ req })
+  const session = await getSession({ req })
   setToken(session.accessToken)
   const schedules = await api.schedule
     .fetchSchedules()

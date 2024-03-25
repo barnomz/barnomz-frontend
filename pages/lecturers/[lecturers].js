@@ -6,8 +6,8 @@ import { faSquarePlus } from '@fortawesome/free-regular-svg-icons'
 import Review from '@/components/lecturer/Review'
 import { useState } from 'react'
 import AddCommentDialog from '@/components/lecturer/AddCommentDialog'
+import { getSession } from 'next-auth/react'
 import { setToken } from '@/services/axios'
-import { getSessionFromCookie } from '@/helpers/getSessionFromCookie'
 
 export default function LecturerPage({ lecturer, reviewsAsProp }) {
   const [reviews, setReviews] = useState(reviewsAsProp)
@@ -63,7 +63,7 @@ export default function LecturerPage({ lecturer, reviewsAsProp }) {
 
 export async function getServerSideProps(context) {
   const { req } = context
-  const session = await getSessionFromCookie({ req })
+  const session = await getSession({ req })
   setToken(session.accessToken)
   // fetch lecturers from /lecturers/<lecturersId>
   const fetchLecturerPromise = api.lecturer
