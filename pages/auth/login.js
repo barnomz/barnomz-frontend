@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getSession, signIn } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import BForm from '@/components/dls/BForm'
 import BInput from '@/components/dls/BInput'
@@ -16,6 +16,7 @@ import {
   lengthIsGreaterOrEqualThan,
 } from '@/utils/validations'
 import { useToast } from '@/components/dls/toast/ToastService'
+import { getSessionFromCookie } from '@/helpers/getSessionFromCookie'
 
 export default function Login() {
   const router = useRouter()
@@ -115,7 +116,7 @@ export default function Login() {
 
 export async function getServerSideProps(context) {
   const { req } = context
-  const session = await getSession({ req })
+  const session = await getSessionFromCookie({ req })
 
   if (session) {
     return {
