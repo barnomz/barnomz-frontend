@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getSessionFromCookie } from '@/helpers/getSessionFromCookie'
 
-const baseUrl = 'https://api.barnomz.ir/api'
+const baseUrl = process.env.CLIENT_API_BASE_URL + '/api'
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,
