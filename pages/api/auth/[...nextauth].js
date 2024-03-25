@@ -19,7 +19,7 @@ export default NextAuth({
             },
           })
           .then((res) => res.data.data)
-          .catch(() => null)
+          .catch((err) => err.response?.data?.detail)
       },
     }),
   ],
